@@ -13,7 +13,9 @@
       "outputs": [
         "coverage/**"
       ],
-      "dependsOn": []
+      "dependsOn": [
+        "^build"
+      ]
     },
     "lint": {},
     "dev": {

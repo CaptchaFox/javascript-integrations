@@ -67,6 +67,7 @@ function Example() {
 ### Interacting with the instance
 
 ```jsx
+import { useRef } from 'react'
 import { CaptchaFox, CaptchaFoxInstance } from '@captchafox/react'
 
 function Example() {
