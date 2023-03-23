@@ -1,4 +1,5 @@
-import { isApiReady, loadCaptchaScript, WidgetApi, WidgetOptions } from '@captchafox/internal';
+import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
+import type { WidgetApi, WidgetOptions } from '@captchafox/types';
 import { createRef, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 type CaptchaFoxProps = WidgetOptions & {

@@ -1,6 +1,5 @@
 declare global {
   interface Window {
-    captchaFoxOnLoad?: () => void;
     captchafox?: WidgetApi;
   }
 }

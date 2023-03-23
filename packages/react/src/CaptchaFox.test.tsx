@@ -1,11 +1,12 @@
 import * as internal from '@captchafox/internal';
+import type { WidgetApi } from '@captchafox/types';
 import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
 import { CaptchaFox } from './CaptchaFox';
 
 jest.mock('@captchafox/internal');
 
-function setupCaptchaFoxWindow(options?: Partial<internal.WidgetApi>) {
+function setupCaptchaFoxWindow(options?: Partial<WidgetApi>) {
   window.captchafox = {
     render: options?.render ?? jest.fn().mockResolvedValue(1),
     getResponse: options?.getResponse ?? jest.fn(),

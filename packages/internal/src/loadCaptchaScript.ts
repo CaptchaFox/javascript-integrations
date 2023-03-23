@@ -12,7 +12,8 @@ const SCRIPT_SRC = `https://cdn.captchafox.com/api.js?render=explicit&onload=${L
 export async function loadCaptchaScript(): Promise<void> {
   if (document.querySelector(`script[src="${SCRIPT_SRC}"]`)) return mountInstance;
 
-  window[LOAD_FUNC_KEY] = resolveFn;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as any)[LOAD_FUNC_KEY] = resolveFn;
 
   const script = document.createElement('script');
   script.src = SCRIPT_SRC;

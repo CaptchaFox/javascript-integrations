@@ -21,6 +21,9 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
+  "dependencies": {
+    "@captchafox/types": "*"
+  },
   "devDependencies": {
     "@captchafox/internal": "*",
     "@testing-library/react": "^14.0.0",

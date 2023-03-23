@@ -1,0 +1,19 @@
+{
+  "name": "@captchafox/types",
+  "version": "0.0.0",
+  "types": "./index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "index.d.ts"
+  ],
+  "scripts": {
+    "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "@captchafox/internal": "*",
+    "eslint": "^8.15.0",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
+  }
+}
