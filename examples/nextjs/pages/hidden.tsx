@@ -38,7 +38,7 @@ export default function Basic() {
         return;
       }
 
-      // route to dashboard or do something else after login
+      // route to a url or do something else after login
       const json = await response.json();
       console.log('Login', json);
     } catch (error) {
