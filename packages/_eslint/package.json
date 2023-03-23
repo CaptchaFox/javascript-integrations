@@ -1,0 +1,13 @@
+{
+  "name": "eslint-config-captchafox",
+  "version": "0.0.0",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "7.29.4",
+    "eslint-config-turbo": "latest",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0"
+  }
+}
