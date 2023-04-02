@@ -1,6 +1,6 @@
 import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
 import type { WidgetApi, WidgetOptions } from '@captchafox/types';
-import { createRef, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 type CaptchaFoxProps = WidgetOptions & {
   /** Called after the widget has been loaded */
@@ -15,7 +15,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
     { sitekey, lng, mode, className, onError, onVerify, onLoad, onFail, onClose },
     ref
   ): JSX.Element => {
-    const containerRef = createRef<HTMLDivElement>();
+    const [containerRef, setContainerRef] = useState<HTMLDivElement | null>();
     const [widgetId, setWidgetId] = useState<string | undefined>();
     const firstRendered = useRef<boolean>(false);
 
@@ -67,9 +67,9 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
     const renderCaptcha = async (): Promise<void> => {
       window.captchafox?.remove(widgetId);
 
-      if (!containerRef.current || containerRef.current?.children?.length === 1) return;
+      if (!containerRef || containerRef?.children?.length === 1) return;
 
-      const newWidgetId = await window.captchafox?.render(containerRef.current as HTMLElement, {
+      const newWidgetId = await window.captchafox?.render(containerRef as HTMLElement, {
         lng,
         sitekey,
         mode,
@@ -84,6 +84,8 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
     };
 
     useEffect(() => {
+      if (!containerRef) return;
+
       if (firstRendered.current) {
         if (isApiReady()) {
           renderCaptcha();
@@ -101,9 +103,9 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
             console.error('[CaptchaFox] Could not load script:', err);
           });
       }
-    }, [sitekey, lng, mode]);
+    }, [containerRef, sitekey, lng, mode]);
 
-    return <div ref={containerRef} id={widgetId} className={className} />;
+    return <div ref={setContainerRef} id={widgetId} className={className} />;
   }
 );
 
