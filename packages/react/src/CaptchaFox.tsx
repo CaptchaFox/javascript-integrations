@@ -12,7 +12,7 @@ export type CaptchaFoxInstance = Omit<WidgetApi, 'render'>;
 
 export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
   (
-    { sitekey, lng, mode, className, onError, onVerify, onLoad, onFail, onClose },
+    { sitekey, lang, mode, className, onError, onVerify, onLoad, onFail, onClose },
     ref
   ): JSX.Element => {
     const [containerRef, setContainerRef] = useState<HTMLDivElement | null>();
@@ -70,7 +70,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
       if (!containerRef || containerRef?.children?.length === 1) return;
 
       const newWidgetId = await window.captchafox?.render(containerRef as HTMLElement, {
-        lng,
+        lang,
         sitekey,
         mode,
         onError,
@@ -103,7 +103,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
             console.error('[CaptchaFox] Could not load script:', err);
           });
       }
-    }, [containerRef, sitekey, lng, mode]);
+    }, [containerRef, sitekey, lang, mode]);
 
     return <div ref={setContainerRef} id={widgetId} className={className} />;
   }

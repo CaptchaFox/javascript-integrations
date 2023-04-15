@@ -99,12 +99,12 @@ describe('@captchafox/react', () => {
         );
       });
 
-      rerender(<CaptchaFox sitekey="another-key" lng="ja" />);
+      rerender(<CaptchaFox sitekey="another-key" lang="ja" />);
 
       await waitFor(() => {
         expect(renderSpy).toHaveBeenCalledWith(
           expect.any(HTMLElement),
-          expect.objectContaining({ sitekey: 'another-key', lng: 'ja' })
+          expect.objectContaining({ sitekey: 'another-key', lang: 'ja' })
         );
       });
     });
