@@ -1,5 +1,11 @@
 # @captchafox/types
 
+## 1.0.1
+
+### Patch Changes
+
+- 41749a8: Correct config and documentation
+
 ## 1.0.0
 
 ### Major Changes
