@@ -1,5 +1,13 @@
 # @captchafox/react
 
+## 1.0.3
+
+### Patch Changes
+
+- d95f39f: Allow string as target element
+- Updated dependencies [d95f39f]
+  - @captchafox/types@1.1.0
+
 ## 1.0.2
 
 ### Patch Changes

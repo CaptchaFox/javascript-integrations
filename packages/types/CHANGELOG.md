@@ -1,5 +1,11 @@
 # @captchafox/types
 
+## 1.1.0
+
+### Minor Changes
+
+- d95f39f: Allow string as target element
+
 ## 1.0.1
 
 ### Patch Changes
