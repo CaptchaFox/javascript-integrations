@@ -19,7 +19,6 @@ export async function loadCaptchaScript(): Promise<void> {
   script.src = SCRIPT_SRC;
   script.async = true;
   script.defer = true;
-  script.type = 'module';
   script.onerror = rejectFn;
   document.body.appendChild(script);
 

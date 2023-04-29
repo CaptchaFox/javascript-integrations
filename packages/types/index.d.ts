@@ -21,7 +21,10 @@ export type WidgetIdFunction<T = void> = (widgetId?: string) => T;
 
 export type VerifyCallbackFunction = (token: string) => void;
 
-export type RenderWidgetFunction = (element: HTMLElement, options: WidgetOptions) => string;
+export type RenderWidgetFunction = (
+  element: HTMLElement | string,
+  options: WidgetOptions
+) => string;
 
 export type WidgetDisplayMode = 'inline' | 'popup' | 'hidden';
 
