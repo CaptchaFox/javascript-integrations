@@ -1,6 +1,6 @@
 # CaptchaFox Integrations
 
-This project contains all currently available integrations for javascript projects.
+This repository contains all currently available integrations for javascript projects.
 
 ## Packages
 

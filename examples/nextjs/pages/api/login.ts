@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { Data } from '../../model/form.model';
 
 // store your secret in a env variable
-const CAPTCHAFOX_SECRET = 'ok_123456789';
+const CAPTCHAFOX_SECRET = 'ok_11111111000000001111111100000000';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const body: Data = req.body;
