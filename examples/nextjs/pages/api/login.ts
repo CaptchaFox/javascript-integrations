@@ -1,6 +1,6 @@
 import { CAPTCHA_RESPONSE_KEY, verify } from '@captchafox/node';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Data } from '../../model/form.model';
+import { Data } from '../../model/form';
 
 // store your secret in a env variable
 const CAPTCHAFOX_SECRET = 'ok_11111111000000001111111100000000';
