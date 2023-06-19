@@ -14,7 +14,7 @@ export default function Basic() {
       <Layout>
         <div>
           <hgroup>
-            <h1>Sign in</h1>
+            <h1>Log in</h1>
             <h2>Login page using CaptchaFox</h2>
           </hgroup>
           <form method="POST" action="/api/login">
@@ -51,7 +51,6 @@ export default function Basic() {
             </button>
           </form>
         </div>
-        <div />
       </Layout>
     </>
   );

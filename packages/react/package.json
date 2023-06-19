@@ -7,7 +7,7 @@
   "sideEffects": false,
   "license": "MIT",
   "files": [
-    "dist/**"
+    "dist"
   ],
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
@@ -22,7 +22,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@captchafox/types": "*"
+    "@captchafox/types": "^1.1.0"
   },
   "devDependencies": {
     "@captchafox/internal": "*",

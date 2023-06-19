@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { CaptchaFox, CAPTCHA_RESPONSE_KEY } from '@captchafox/react';
 import { Layout } from '@/components/Layout';
 import { Controller, useForm } from 'react-hook-form';
-import { Data } from '../model/form.model';
+import { Data } from '../model/form';
 import { toast } from 'react-toastify';
 
 export default function HookForm() {
@@ -47,7 +47,7 @@ export default function HookForm() {
       <Layout>
         <div>
           <hgroup>
-            <h1>Sign in</h1>
+            <h1>Log in</h1>
             <h2>Login page using CaptchaFox</h2>
           </hgroup>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -92,7 +92,6 @@ export default function HookForm() {
             </button>
           </form>
         </div>
-        <div />
       </Layout>
     </>
   );

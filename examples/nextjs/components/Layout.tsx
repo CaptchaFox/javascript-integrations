@@ -7,7 +7,7 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <main className="container">
-      <article className="grid">{children}</article>
+      <article className="box grid">{children}</article>
     </main>
   );
 };

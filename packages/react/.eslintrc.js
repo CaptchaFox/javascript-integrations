@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: ["captchafox"],
+  extends: ['captchafox', 'plugin:testing-library/react']
 };

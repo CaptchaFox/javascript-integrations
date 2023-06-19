@@ -3,7 +3,7 @@ import { CaptchaFox, CaptchaFoxInstance, CAPTCHA_RESPONSE_KEY } from '@captchafo
 import Head from 'next/head';
 import { FormEvent, useRef } from 'react';
 import { toast } from 'react-toastify';
-import { Data } from '../model/form.model';
+import { Data } from '../model/form';
 
 export default function Basic() {
   const captchaRef = useRef<CaptchaFoxInstance | null>(null);
@@ -55,7 +55,7 @@ export default function Basic() {
       <Layout>
         <div>
           <hgroup>
-            <h1>Sign in</h1>
+            <h1>Log in</h1>
             <h2>Login page using CaptchaFox (hidden)</h2>
           </hgroup>
           <form onSubmit={handleSubmit}>
@@ -91,7 +91,6 @@ export default function Basic() {
             <button type="submit">Login</button>
           </form>
         </div>
-        <div />
       </Layout>
     </>
   );
