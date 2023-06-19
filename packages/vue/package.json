@@ -1,6 +1,6 @@
 {
   "name": "@captchafox/vue",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "type": "module",
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
