@@ -103,7 +103,6 @@ const token = ref<string>();
 import { CAPTCHA_RESPONSE_KEY, CaptchaFox, CaptchaFoxInstance } from '@captchafox/vue';
 import { ref } from 'vue';
 
-const formData = ref();
 const captchafox = ref<CaptchaFoxInstance | null>(null);
 
 const triggerAction = async () => {
