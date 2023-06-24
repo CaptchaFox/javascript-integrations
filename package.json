@@ -13,13 +13,17 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=./packages/* && changeset publish"
+    "release": "turbo run build --filter=./packages/* && changeset publish",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "eslint": "^8.29.0",
     "eslint-config-captchafox": "*",
     "prettier": "^2.8.3",
-    "turbo": "latest"
+    "turbo": "latest",
+    "husky": "^8.0.0"
   }
 }
