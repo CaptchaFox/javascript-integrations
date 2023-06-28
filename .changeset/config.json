@@ -9,5 +9,6 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "@examples/*"
-  ]
+  ],
+  "title": "chore: Version Packages"
 }
