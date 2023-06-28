@@ -21,7 +21,7 @@ jobs:
           node-version: 18.x
 
       - name: Install Dependencies
-        run: npm ci
+        run: HUSKY=0 npm ci
 
       - name: Lint
         run: npm run lint
