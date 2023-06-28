@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.1.0
+
+### Minor Changes
+
+- 15fca22: improve type exports
+
 ## 1.0.3
 
 ### Patch Changes

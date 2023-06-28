@@ -1,5 +1,11 @@
 # @captchafox/node
 
+## 1.1.0
+
+### Minor Changes
+
+- 15fca22: improve type exports
+
 ## 1.0.1
 
 ### Patch Changes
