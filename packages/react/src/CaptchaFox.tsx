@@ -1,6 +1,6 @@
 import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
 import type { WidgetApi, WidgetOptions } from '@captchafox/types';
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 type CaptchaFoxProps = WidgetOptions & {
   /** Called after the widget has been loaded */

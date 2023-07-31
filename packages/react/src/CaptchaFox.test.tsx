@@ -2,6 +2,7 @@ import * as internal from '@captchafox/internal';
 import type { WidgetApi } from '@captchafox/types';
 import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
+import React from 'react';
 import { CaptchaFox } from './CaptchaFox';
 
 jest.mock('@captchafox/internal');

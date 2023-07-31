@@ -1,8 +1,12 @@
 {
-  "extends": "@captchafox/internal/tsconfig/react-library.json",
+  "extends": "@captchafox/tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["dom", "ES2015"],
+    "module": "ESNext",
+    "target": "es6",
+    "moduleResolution": "Bundler"
+  },
   "include": ["."],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "exclude": ["dist", "node_modules"]
 }
