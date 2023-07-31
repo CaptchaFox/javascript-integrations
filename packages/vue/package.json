@@ -33,6 +33,7 @@
       "@captchafox/types": "^1.1.0"
     },
     "devDependencies": {
+      "@captchafox/tsconfig": "*",
       "@captchafox/internal": "*",
       "@testing-library/vue": "^7.0.0",
       "@vitejs/plugin-vue": "^4.2.3",
@@ -47,6 +48,11 @@
       "vitest": "^0.32.2",
       "vue": "^3.3.4",
       "vue-tsc": "^1.8.0"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/CaptchaFox/javascript-integrations.git",
+      "directory": "packages/vue"
     },
     "bugs": {
       "url": "https://github.com/CaptchaFox/javascript-integrations/issues"

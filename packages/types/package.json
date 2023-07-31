@@ -12,6 +12,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@captchafox/tsconfig": "*",
     "@captchafox/internal": "*",
     "eslint": "^8.15.0",
     "tsup": "^7.1.0",

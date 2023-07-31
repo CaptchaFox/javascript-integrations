@@ -1,8 +1,5 @@
 {
-  "extends": "@captchafox/internal/tsconfig/base.json",
+  "extends": "@captchafox/tsconfig/base.json",
   "include": ["."],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "exclude": ["dist", "node_modules"]
 }
