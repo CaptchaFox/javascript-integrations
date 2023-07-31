@@ -1,6 +1,12 @@
 # CaptchaFox Integrations
 
+[CaptchaFox](https://captchafox.com/) is a user-friendly and GDPR compliant captcha service that protects your website and mobile apps from malicious bot traffic.
+
 This repository contains all currently available integrations for javascript projects.
+
+## Getting started
+
+Read the [documentation](https://docs.captchafox.com/) to learn more about integrating CaptchaFox in your project.
 
 ## Packages
 
