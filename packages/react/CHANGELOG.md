@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.1.1
+
+### Patch Changes
+
+- 3aece03: fix: disable jsx runtime import in dist because of incorrect tsup esm build output
+
 ## 1.1.0
 
 ### Minor Changes
