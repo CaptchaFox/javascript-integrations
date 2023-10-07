@@ -27,6 +27,10 @@ describe('@captchafox/react', () => {
 
   afterEach(() => {
     delete window.captchafox;
+    jest.clearAllMocks();
+  });
+
+  afterAll(() => {
     jest.restoreAllMocks();
   });
 
