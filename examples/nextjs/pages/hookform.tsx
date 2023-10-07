@@ -31,8 +31,7 @@ export default function HookForm() {
       }
 
       // route to dashboard or do something else after login
-      const json = await response.json();
-      console.log('Login', json);
+      toast('Login successful', { type: 'success' });
     } catch (error) {
       toast('Error during request', { type: 'error' });
       console.error(error);

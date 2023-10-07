@@ -39,8 +39,7 @@ export default function Basic() {
       }
 
       // route to a url or do something else after login
-      const json = await response.json();
-      console.log('Login', json);
+      toast('Login successful', { type: 'success' });
     } catch (error) {
       toast('Error during request', { type: 'error' });
       console.error(error);
