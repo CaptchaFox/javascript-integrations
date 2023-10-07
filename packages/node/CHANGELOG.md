@@ -1,5 +1,11 @@
 # @captchafox/node
 
+## 1.1.1
+
+### Patch Changes
+
+- ea35262: chore: sign package
+
 ## 1.1.0
 
 ### Minor Changes
