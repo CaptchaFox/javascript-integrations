@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.2.0
+
+### Minor Changes
+
+- fe73136: feat: add use-client directive
+
 ## 1.1.1
 
 ### Patch Changes
