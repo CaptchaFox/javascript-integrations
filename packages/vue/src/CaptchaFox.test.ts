@@ -1,9 +1,9 @@
-import { vi, SpyInstance } from 'vitest';
 import * as internal from '@captchafox/internal';
 import type { WidgetApi } from '@captchafox/types';
 import { render, waitFor } from '@testing-library/vue';
-import CaptchaFox from './CaptchaFox.vue';
 import { mount } from '@vue/test-utils';
+import { SpyInstance, vi } from 'vitest';
+import CaptchaFox from './CaptchaFox.vue';
 
 vi.mock('@captchafox/internal');
 

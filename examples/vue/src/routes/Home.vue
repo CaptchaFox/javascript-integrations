@@ -1,6 +1,6 @@
 <template>
-  <main className="container examples">
-    <div className="grid">
+  <main class="container examples">
+    <div class="grid">
       <router-link to="/basic">
         <article>
           <hgroup>

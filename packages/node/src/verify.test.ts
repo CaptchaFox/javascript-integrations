@@ -1,5 +1,6 @@
-import { verify } from './verify';
+import { describe, expect, it } from '@jest/globals';
 import nock from 'nock';
+import { verify } from './verify';
 
 describe('@captchafox/node', () => {
   const secret = 'ok_12345';

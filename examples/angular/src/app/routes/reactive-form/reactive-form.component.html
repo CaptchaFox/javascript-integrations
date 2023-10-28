@@ -1,0 +1,37 @@
+<app-base-layout>
+  <div>
+    <hgroup>
+      <h1>Log in</h1>
+      <h2>Login page using CaptchaFox</h2>
+    </hgroup>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input
+        type="text"
+        placeholder="Login"
+        aria-label="Login"
+        auto-complete="nickname"
+        required
+        formControlName="login"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        aria-label="Password"
+        auto-complete="current-password"
+        required
+        formControlName="password"
+      />
+      <fieldset>
+        <label html-for="remember">
+          <input id="remember" type="checkbox" role="switch" formControlName="remember" />
+          Remember me
+        </label>
+      </fieldset>
+      <fieldset>
+        <!-- Uses sitekey from global config -->
+        <ngx-captchafox formControlName="captchaToken" />
+      </fieldset>
+      <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    </form>
+  </div>
+</app-base-layout>
