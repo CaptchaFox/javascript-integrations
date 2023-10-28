@@ -14,7 +14,7 @@ Browser:
 
 - [@captchafox/react](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/react)
 - [@captchafox/vue](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/vue)
-- @captchafox/angular: WIP
+- [@captchafox/angular](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/angular)
 
 Server:
 
@@ -29,3 +29,7 @@ Examples for each integration can be found in the `examples` folder.
   - Server side validation
 - [Vue](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/vue)
   - Multiple form implementations (plain HTML, JS, [FormKit](https://formkit.com/))
+- [Angular](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/angular)
+  - Reactive Forms
+  - Template Driven Forms
+  - Service usage

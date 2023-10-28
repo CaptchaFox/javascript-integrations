@@ -18,6 +18,10 @@ yarn add @captchafox/node
 pnpm add @captchafox/node
 ```
 
+```sh
+bun add @captchafox/node
+```
+
 ## Usage
 
 ### ESM / await

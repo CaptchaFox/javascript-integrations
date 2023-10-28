@@ -1,24 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as internal from '@captchafox/internal';
 import type { WidgetApi } from '@captchafox/types';
+import { afterAll, afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
+import { SpyInstance, mocked } from 'jest-mock';
 import React from 'react';
 import { CaptchaFox } from './CaptchaFox';
 
 jest.mock('@captchafox/internal');
 
 function setupCaptchaFoxWindow(options?: Partial<WidgetApi>) {
-  window.captchafox = {
-    render: options?.render ?? jest.fn().mockResolvedValue(1),
+  window.captchafox = mocked({
+    render: options?.render ?? jest.fn<any>().mockResolvedValue(1),
     getResponse: options?.getResponse ?? jest.fn(),
     remove: options?.remove ?? jest.fn(),
     reset: options?.reset ?? jest.fn(),
     execute: options?.execute ?? jest.fn()
-  };
+  }) as unknown as WidgetApi;
 }
 
 describe('@captchafox/react', () => {
-  let scriptLoadSpy: jest.SpyInstance;
+  let scriptLoadSpy: SpyInstance;
 
   beforeEach(() => {
     jest.spyOn(internal, 'isApiReady').mockReturnValue(true);
@@ -36,7 +39,7 @@ describe('@captchafox/react', () => {
 
   describe('<CaptchaFox />', () => {
     it('should render and call onLoad', async () => {
-      const renderSpy = jest.fn().mockResolvedValue(1);
+      const renderSpy = jest.fn<any>().mockResolvedValue(1);
       const loadSpy = jest.fn();
       setupCaptchaFoxWindow({ render: renderSpy });
 
@@ -56,7 +59,7 @@ describe('@captchafox/react', () => {
 
     it('should call onError if script fails to load', async () => {
       jest.spyOn(internal, 'loadCaptchaScript').mockRejectedValue('error');
-      const renderSpy = jest.fn();
+      const renderSpy = jest.fn<any>();
       const loadSpy = jest.fn();
       const errorSpy = jest.fn();
       setupCaptchaFoxWindow({ render: renderSpy });
@@ -72,7 +75,7 @@ describe('@captchafox/react', () => {
     });
 
     it('should rerender widget on prop changes', async () => {
-      const renderSpy = jest.fn().mockResolvedValue(1);
+      const renderSpy = jest.fn<any>().mockResolvedValue(1);
       setupCaptchaFoxWindow({ render: renderSpy });
 
       const { rerender } = render(<CaptchaFox sitekey="test" />);
@@ -119,12 +122,12 @@ describe('@captchafox/react', () => {
     it('should call ref methods', async () => {
       const mockWidgetId = 2;
       const mockResponseToken = 'test-token';
-      const refSpy = jest.fn();
+      const refSpy = jest.fn<any>();
       const resetSpy = jest.fn();
       const removeSpy = jest.fn();
-      const responseSpy = jest.fn().mockReturnValue(mockResponseToken);
-      const executeSpy = jest.fn().mockResolvedValue(mockResponseToken);
-      const renderSpy = jest.fn().mockResolvedValue(mockWidgetId);
+      const responseSpy = jest.fn<any>().mockReturnValue(mockResponseToken);
+      const executeSpy = jest.fn<any>().mockResolvedValue(mockResponseToken);
+      const renderSpy = jest.fn<any>().mockResolvedValue(mockWidgetId);
 
       setupCaptchaFoxWindow({
         reset: resetSpy,
@@ -140,7 +143,7 @@ describe('@captchafox/react', () => {
         expect(renderSpy).toHaveBeenCalled();
       });
 
-      const refMethods = refSpy.mock.lastCall[0];
+      const refMethods: any = refSpy.mock.lastCall?.[0];
 
       refMethods.reset();
       expect(resetSpy).toHaveBeenCalled();
@@ -164,9 +167,9 @@ describe('@captchafox/react', () => {
       const refSpy = jest.fn();
       const resetSpy = jest.fn();
       const removeSpy = jest.fn();
-      const responseSpy = jest.fn();
-      const executeSpy = jest.fn();
-      const renderSpy = jest.fn();
+      const responseSpy = jest.fn<any>();
+      const executeSpy = jest.fn<any>();
+      const renderSpy = jest.fn<any>();
 
       setupCaptchaFoxWindow({
         reset: resetSpy,
@@ -182,7 +185,7 @@ describe('@captchafox/react', () => {
         expect(renderSpy).not.toHaveBeenCalled();
       });
 
-      const refMethods = refSpy.mock.lastCall[0];
+      const refMethods: any = refSpy.mock.lastCall?.[0];
 
       refMethods.reset();
       expect(resetSpy).not.toHaveBeenCalled();

@@ -18,6 +18,10 @@ yarn add @captchafox/vue
 pnpm add @captchafox/vue
 ```
 
+```sh
+bun add @captchafox/vue
+```
+
 ## Usage
 
 ```vue
@@ -123,3 +127,5 @@ const triggerAction = async () => {
     <button @click="triggerAction">Action</button>
 </template>
 ```
+
+You can find more detailed examples in the [GitHub repository](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/vue).

@@ -18,6 +18,10 @@ yarn add @captchafox/react
 pnpm add @captchafox/react
 ```
 
+```sh
+bun add @captchafox/react
+```
+
 ## Usage
 
 ```tsx
@@ -91,3 +95,5 @@ function Example() {
     )
 }
 ```
+
+You can find more detailed examples in the [GitHub repository](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/react).
