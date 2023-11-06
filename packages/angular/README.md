@@ -47,7 +47,7 @@ Then you can use the `ngx-captchafox` component inside your template:
 <ngx-captchafox
     (verify)="onVerify($event)"
     (error)="onError($event)"
-    (expired)="onExpire($event)"
+    (expire)="onExpire($event)"
 ></ngx-captchafox>
 ```
 

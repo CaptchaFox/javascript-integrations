@@ -1,6 +1,3 @@
-/*
- * Public API Surface of captchafox
- */
 export * from './captchafox.service';
 export * from './captchafox.component';
 export * from './captchafox.module';
