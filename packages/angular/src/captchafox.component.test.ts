@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as internal from '@captchafox/internal';
 import { WidgetApi } from '@captchafox/types';
 import { afterAll, afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { render, waitFor } from '@testing-library/angular';
 import { SpyInstance, mocked } from 'jest-mock';
 import { CaptchaFoxComponent } from './captchafox.component';
 import { CAPTCHA_CONFIG } from './config';
+import * as internal from './loader';
 
-jest.mock('@captchafox/internal');
+jest.mock('./loader');
 
 function setupCaptchaFoxWindow(options?: Partial<WidgetApi>) {
   window.captchafox = mocked({

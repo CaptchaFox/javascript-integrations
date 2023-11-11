@@ -1,8 +1,8 @@
-import { defer, from, Subscription, Observable, Subscriber } from 'rxjs';
-import { Inject, Injectable, NgZone, OnDestroy, PLATFORM_ID } from '@angular/core';
-import { CAPTCHA_CONFIG, CaptchaConfig } from './config';
 import { isPlatformServer } from '@angular/common';
-import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
+import { Inject, Injectable, NgZone, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { Observable, Subscriber, Subscription, defer, from } from 'rxjs';
+import { CAPTCHA_CONFIG, CaptchaConfig } from './config';
+import { isApiReady, loadCaptchaScript } from './loader';
 
 const loadScriptObservable = defer(() => loadCaptchaScript());
 

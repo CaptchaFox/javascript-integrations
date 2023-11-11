@@ -35,7 +35,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@captchafox/types": "^1.1.0"
+    "@captchafox/types": "^1.1.1"
   },
   "devDependencies": {
     "@captchafox/tsconfig": "*",

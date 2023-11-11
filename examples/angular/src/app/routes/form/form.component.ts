@@ -17,7 +17,7 @@ export class FormComponent {
     this.isVerified = true;
   }
 
-  onError(error?: Error) {
+  onError(error?: Error | string) {
     this.toastr.error(error?.toString() ?? 'Captcha Error');
   }
 

@@ -15,10 +15,10 @@ import {
   forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
 import type { WidgetDisplayMode } from '@captchafox/types';
 import { Subscription, defer } from 'rxjs';
 import { CAPTCHA_CONFIG, CaptchaConfig } from './config';
+import { isApiReady, loadCaptchaScript } from './loader';
 
 type MarkFunctionProperties<Component> = {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -57,7 +57,9 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
   @Output() load: EventEmitter<void> = new EventEmitter<void>();
   @Output() verify: EventEmitter<string> = new EventEmitter<string>();
   @Output() expire: EventEmitter<void> = new EventEmitter<void>();
-  @Output() error: EventEmitter<unknown> = new EventEmitter<unknown>();
+  @Output() error: EventEmitter<Error | string | undefined> = new EventEmitter<
+    Error | string | undefined
+  >();
   @Output() fail: EventEmitter<void> = new EventEmitter<void>();
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
 
@@ -98,7 +100,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
         try {
           await this.renderCaptcha();
         } catch (error) {
-          this.error.emit(error);
+          this.error.emit(error as Error);
         }
       },
       error: (error) => {
