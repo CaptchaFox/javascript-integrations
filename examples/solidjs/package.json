@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@captchafox/solid": "*",
+    "@solidjs/router": "^0.9.1",
+    "@picocss/pico": "^1.5.10",
     "solid-js": "^1.8.5"
   },
   "devDependencies": {
