@@ -63,7 +63,7 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/CaptchaFox/javascript-integrations.git",
-        "directory": "packages/react"
+        "directory": "packages/solidjs"
     },
     "bugs": {
         "url": "https://github.com/CaptchaFox/javascript-integrations/issues"
