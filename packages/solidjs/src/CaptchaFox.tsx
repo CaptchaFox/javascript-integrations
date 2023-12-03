@@ -88,7 +88,7 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
       .then(async () => {
         await renderCaptcha();
       })
-      .catch((err) => {
+      .catch((err: any) => {
         props.onError?.(err);
         // eslint-disable-next-line no-console
         console.error('[CaptchaFox] Could not load script:', err);

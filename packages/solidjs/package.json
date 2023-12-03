@@ -23,8 +23,7 @@
     "scripts": {
         "dev": "tsup --watch",
         "build": "tsup",
-        "lint": "concurrently npm:lint:*",
-        "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.tsx",
+        "lint": "TIMING=1 eslint \"src/**/*.{ts,tsx}\"",
         "lint:types": "tsc --noEmit",
         "test": "jest --coverage",
         "test:watch": "jest --watch",
@@ -42,7 +41,6 @@
         "@solidjs/testing-library": "^0.8.4",
         "@typescript-eslint/eslint-plugin": "^6.1.0",
         "@typescript-eslint/parser": "^6.1.0",
-        "concurrently": "^8.2.0",
         "esbuild": "^0.18.15",
         "esbuild-plugin-solid": "^0.5.0",
         "eslint": "^8.45.0",
