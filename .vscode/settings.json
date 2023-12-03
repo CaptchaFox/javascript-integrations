@@ -1,3 +1,4 @@
 {
-    "vitest.commandLine": "npm run test"
+  "vitest.commandLine": "npm run test",
+  "eslint.workingDirectories": [{ "pattern": "./{packages,examples}/*" }]
 }

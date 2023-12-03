@@ -1,0 +1,20 @@
+{
+  "name": "@examples/solidjs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@captchafox/solid": "*",
+    "solid-js": "^1.8.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^4.4.1",
+    "vite-plugin-solid": "^2.7.2"
+  }
+}
