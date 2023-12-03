@@ -1,31 +1,31 @@
-# @captchafox/react
+# @captchafox/solid
 
-[![NPM version](https://img.shields.io/npm/v/@captchafox/react.svg)](https://www.npmjs.com/package/@captchafox/react)
+[![NPM version](https://img.shields.io/npm/v/@captchafox/solid.svg)](https://www.npmjs.com/package/@captchafox/solid)
 
 ## Installation
 
 Install the library using your prefered package manager
 
 ```sh
-npm install @captchafox/react
+npm install @captchafox/solid
 ```
 
 ```sh
-yarn add @captchafox/react
+yarn add @captchafox/solid
 ```
 
 ```sh
-pnpm add @captchafox/react
+pnpm add @captchafox/solid
 ```
 
 ```sh
-bun add @captchafox/react
+bun add @captchafox/solid
 ```
 
 ## Usage
 
 ```tsx
-import { CaptchaFox } from '@captchafox/react';
+import { CaptchaFox } from '@captchafox/solid';
 
 function Example() {
   return <CaptchaFox sitekey="sk_11111111000000001111111100000000" />;
@@ -36,7 +36,7 @@ function Example() {
 
 | **Prop** | **Type**                | **Description**                                                                 | **Required** |
 | -------- | ----------------------- | ------------------------------------------------------------------------------- | ------------ |
-| sitekey  | `string`                | The sitekey for the widget                                                      | ✅           |
+| sitekey  | `string`                | The sitekey for the widget                                                      | ✅            |
 | lang     | `string`                | The language the widget should display. Defaults to automatically detecting it. |              |
 | mode     | `inline\|popup\|hidden` | The mode the widget should be displayed in .                                    |              |
 | onVerify | `function`              | Called with the response token after successful verification.                   |              |
@@ -48,7 +48,7 @@ function Example() {
 ### Using the verification callback
 
 ```jsx
-import { CaptchaFox, CAPTCHA_RESPONSE_KEY } from '@captchafox/react';
+import { CaptchaFox, CAPTCHA_RESPONSE_KEY } from '@captchafox/solid';
 
 function Example() {
   const handleVerify = (token: string) => {
@@ -66,16 +66,15 @@ function Example() {
 ### Interacting with the instance
 
 ```jsx
-import { useRef } from 'react'
-import { CaptchaFox, CaptchaFoxInstance } from '@captchafox/react'
+import { CaptchaFox, CaptchaFoxInstance } from '@captchafox/solid'
 
 function Example() {
-    const captchaRef = useRef<CaptchaFoxInstance | null>(null);
+    let captchaRef: CaptchaFoxInstance;
 
     const triggerAction = async () => {
         // execute the captcha
         try {
-            const token = await captchaRef.current?.execute()
+            const token = await captchaRef.execute();
         } catch {
             // unsuccessful verification
         }
@@ -84,11 +83,11 @@ function Example() {
     return (
         <CaptchaFox
             sitekey="sk_11111111000000001111111100000000"
-            ref={captchaRef}
+            ref={captchaRef!}
         />
         <button onClick={triggerAction}>Action</button>
     )
 }
 ```
 
-You can find more detailed examples in the [GitHub repository](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/react).
+You can find more detailed examples in the [GitHub repository](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/solid).

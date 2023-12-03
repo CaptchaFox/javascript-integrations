@@ -33,16 +33,15 @@ const secret = 'organization_secret';
 const token = 'widget_token';
 
 try {
-    const data = await verify(secret, token);
-    if (data.success) {
-      console.log('success!', data);
-    } else {
-      console.log('verification failed');
-    }
-} catch(error) {
-    console.log(error);
+  const data = await verify(secret, token);
+  if (data.success) {
+    console.log('success!', data);
+  } else {
+    console.log('verification failed');
+  }
+} catch (error) {
+  console.log(error);
 }
-
 ```
 
 ### Require

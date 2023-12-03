@@ -15,6 +15,7 @@ Browser:
 - [@captchafox/react](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/react)
 - [@captchafox/vue](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/vue)
 - [@captchafox/angular](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/angular)
+- [@captchafox/solid](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/solidjs)
 
 Server:
 
@@ -33,3 +34,5 @@ Examples for each integration can be found in the `examples` folder.
   - Reactive Forms
   - Template Driven Forms
   - Service usage
+- [Solid.js](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/solidjs)
+  - Multiple form implementations (plain HTML, JS)

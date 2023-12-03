@@ -30,7 +30,7 @@ import { CaptchaFox } from '@captchafox/vue';
 </script>
 
 <template>
-    <CaptchaFox sitekey="sk_11111111000000001111111100000000" />
+  <CaptchaFox sitekey="sk_11111111000000001111111100000000" />
 </template>
 ```
 
@@ -49,7 +49,7 @@ const app = createApp(App)
 
 | **Prop** | **Type**                | **Description**                                                                 | **Required** |
 | -------- | ----------------------- | ------------------------------------------------------------------------------- | ------------ |
-| sitekey  | `string`                | The sitekey for the widget                                                      | ✅            |
+| sitekey  | `string`                | The sitekey for the widget                                                      | ✅           |
 | lang     | `string`                | The language the widget should display. Defaults to automatically detecting it. |              |
 | mode     | `inline\|popup\|hidden` | The mode the widget should be displayed in .                                    |              |
 | onVerify | `function`              | Called with the response token after successful verification.                   |              |
@@ -65,19 +65,16 @@ const app = createApp(App)
 import { CaptchaFox, CAPTCHA_RESPONSE_KEY } from '@captchafox/vue';
 
 const handleVerify = (token: string) => {
-    // do something with the token here (e.g. submit the form)
-    const formData = {
-        // your form data
-        [CAPTCHA_RESPONSE_KEY]: token
-    };
-}
+  // do something with the token here (e.g. submit the form)
+  const formData = {
+    // your form data
+    [CAPTCHA_RESPONSE_KEY]: token
+  };
+};
 </script>
 
 <template>
-    <CaptchaFox 
-        sitekey="sk_11111111000000001111111100000000" 
-        @verify="handleVerify"
-    />
+  <CaptchaFox sitekey="sk_11111111000000001111111100000000" @verify="handleVerify" />
 </template>
 ```
 
@@ -92,11 +89,8 @@ const token = ref<string>();
 </script>
 
 <template>
-    <CaptchaFox 
-        sitekey="sk_11111111000000001111111100000000" 
-        v-model="token"
-    />
-    <pre>{{ token }}</pre>
+  <CaptchaFox sitekey="sk_11111111000000001111111100000000" v-model="token" />
+  <pre>{{ token }}</pre>
 </template>
 ```
 
@@ -110,21 +104,18 @@ import { ref } from 'vue';
 const captchafox = ref<CaptchaFoxInstance | null>(null);
 
 const triggerAction = async () => {
-    // execute the captcha
-    try {
-        const token = await captchafox.value?.execute()
-    } catch {
-        // unsuccessful verification
-    }
-}
+  // execute the captcha
+  try {
+    const token = await captchafox.value?.execute();
+  } catch {
+    // unsuccessful verification
+  }
+};
 </script>
 
 <template>
-    <CaptchaFox
-        ref="captchafox"
-        sitekey="sk_11111111000000001111111100000000"
-    />
-    <button @click="triggerAction">Action</button>
+  <CaptchaFox ref="captchafox" sitekey="sk_11111111000000001111111100000000" />
+  <button @click="triggerAction">Action</button>
 </template>
 ```
 

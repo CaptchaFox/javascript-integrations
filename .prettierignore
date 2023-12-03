@@ -1,14 +1,9 @@
 .DS_Store
 node_modules
-/build
-/dist
-/package
+build
+dist
 .env
 .env.*
 !.env.example
 vite.config.js*
-
-pnpm-lock.yaml
-pnpm-workspace.yaml
 package-lock.json
-yarn.lock

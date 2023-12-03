@@ -29,14 +29,14 @@ First, add the `CaptchaFoxModule` to your apps `imports` and initialize it.
 You can choose between using a global config for the whole app or specifing the config manually on each component.
 
 ```ts
-import { CaptchaFoxModule } from '@captchafox/angular'; 
+import { CaptchaFoxModule } from '@captchafox/angular';
 
 @NgModule({
   imports: [
     CaptchaFoxModule.forRoot({
       siteKey: '<YOUR_SITEKEY>'
-    }),
-  ],
+    })
+  ]
 })
 export class AppModule {}
 ```
@@ -45,9 +45,9 @@ Then you can use the `ngx-captchafox` component inside your template:
 
 ```html
 <ngx-captchafox
-    (verify)="onVerify($event)"
-    (error)="onError($event)"
-    (expire)="onExpire($event)"
+  (verify)="onVerify($event)"
+  (error)="onError($event)"
+  (expire)="onExpire($event)"
 ></ngx-captchafox>
 ```
 
@@ -73,9 +73,7 @@ Then you can use the `ngx-captchafox` component inside your template:
 ### Using the verify event
 
 ```html
-<ngx-captchafox
-    (verify)="onVerify($event)"
-></ngx-captchafox>
+<ngx-captchafox (verify)="onVerify($event)"></ngx-captchafox>
 ```
 
 ```ts
@@ -91,8 +89,8 @@ export class YourComponent {
 
 ```html
 <form [formGroup]="yourForm" (ngSubmit)="onSubmit()">
-    <ngx-captchafox formControlName="captchaToken" />
-    ...
+  <ngx-captchafox formControlName="captchaToken" />
+  ...
 </form>
 ```
 
