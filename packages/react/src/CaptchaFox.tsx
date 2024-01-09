@@ -12,7 +12,7 @@ export type CaptchaFoxInstance = Omit<WidgetApi, 'render'>;
 
 export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
   (
-    { sitekey, lang, mode, className, onError, onVerify, onLoad, onFail, onClose },
+    { sitekey, lang, mode, theme, className, onError, onVerify, onLoad, onFail, onClose },
     ref
   ): JSX.Element => {
     const [containerRef, setContainerRef] = useState<HTMLDivElement | null>();
@@ -73,6 +73,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
         lang,
         sitekey,
         mode,
+        theme,
         onError,
         onFail,
         onClose,
@@ -87,22 +88,24 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
       if (!containerRef) return;
 
       if (firstRendered.current) {
-        if (isApiReady()) {
-          renderCaptcha();
+        if (!isApiReady()) {
+          return;
         }
-      } else {
-        loadCaptchaScript()
-          .then(async () => {
-            if (isApiReady()) {
-              firstRendered.current = true;
-              await renderCaptcha();
-            }
-          })
-          .catch((err) => {
-            onError?.(err);
-            console.error('[CaptchaFox] Could not load script:', err);
-          });
+
+        renderCaptcha();
       }
+
+      loadCaptchaScript()
+        .then(async () => {
+          if (isApiReady()) {
+            firstRendered.current = true;
+            await renderCaptcha();
+          }
+        })
+        .catch((err) => {
+          onError?.(err);
+          console.error('[CaptchaFox] Could not load script:', err);
+        });
     }, [containerRef, sitekey, lang, mode]);
 
     return <div ref={setContainerRef} id={widgetId} className={className} />;

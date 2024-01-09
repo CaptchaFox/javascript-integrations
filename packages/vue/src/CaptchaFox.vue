@@ -4,7 +4,7 @@ import type { WidgetApi } from '@captchafox/types';
 import { onMounted, ref, watch } from 'vue';
 import type { WidgetOptions } from '@captchafox/types';
 
-export type CaptchaFoxProps = Pick<WidgetOptions, 'sitekey' | 'lang' | 'mode'> & {
+export type CaptchaFoxProps = Pick<WidgetOptions, 'sitekey' | 'lang' | 'mode' | 'theme'> & {
   modelValue?: string;
   containerClass?: string;
 };
@@ -78,6 +78,7 @@ const renderCaptcha = async (): Promise<void> => {
     lang: props.lang,
     sitekey: props.sitekey,
     mode: props.mode,
+    theme: props.theme,
     onError: (error) => emit('error', error),
     onFail: () => emit('fail'),
     onClose: () => emit('close'),
@@ -105,7 +106,7 @@ onMounted(() => {
     });
 });
 
-watch([() => props.lang, () => props.mode, () => props.sitekey], async () => {
+watch([() => props.lang, () => props.mode, () => props.sitekey, () => props.theme], async () => {
   await renderCaptcha()
 });
 </script>

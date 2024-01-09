@@ -17,6 +17,7 @@ defineProps({
     :sitekey="context.sitekey"
     :mode="context.mode"
     :lang="context.lang"
+    :theme="context.theme"
     @verify="(token) => context.node.input(token)"
   />
 </template>

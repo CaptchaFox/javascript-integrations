@@ -73,6 +73,7 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
       lang: props.lang,
       sitekey: props.sitekey,
       mode: props.mode,
+      theme: props.theme,
       onError: props.onError,
       onFail: props.onFail,
       onClose: props.onClose,
@@ -97,7 +98,7 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
 
   createEffect(
     on(
-      () => [props.sitekey, props.lang, props.mode],
+      () => [props.sitekey, props.lang, props.mode, props.theme],
       async () => {
         await renderCaptcha();
       }

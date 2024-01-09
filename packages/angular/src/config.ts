@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { WidgetDisplayMode } from '@captchafox/types';
+import { Theme, WidgetDisplayMode } from '@captchafox/types';
 
 export interface CaptchaConfig {
   /**
@@ -16,6 +16,11 @@ export interface CaptchaConfig {
    * @see {@link https://docs.captchafox.com/language-codes}
    */
   language?: string;
+  /**
+   * The theme of the widget. Defaults to light.
+   * @see {@link https://docs.captchafox.com/theming}
+   */
+  theme?: Theme;
 }
 
 export const CAPTCHA_CONFIG = new InjectionToken<CaptchaConfig>('CAPTCHA_CONFIG');

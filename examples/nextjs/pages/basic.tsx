@@ -43,6 +43,7 @@ export default function Basic() {
             <fieldset>
               <CaptchaFox
                 sitekey="sk_11111111000000001111111100000000"
+                theme="dark"
                 onVerify={() => setVerified(true)}
               />
             </fieldset>
