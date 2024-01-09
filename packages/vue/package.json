@@ -1,6 +1,6 @@
 {
   "name": "@captchafox/vue",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "type": "module",
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
@@ -30,7 +30,7 @@
     "vue": "^3.0.0"
   },
   "dependencies": {
-    "@captchafox/types": "^1.1.1"
+    "@captchafox/types": "^1.2.0"
   },
   "devDependencies": {
     "@captchafox/tsconfig": "*",
