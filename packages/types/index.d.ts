@@ -41,7 +41,7 @@ export type ThemeDefinition = {
     background?: string;
     backgroundHover?: string;
     text?: string;
-    check?: string;
+    checkbox?: string;
   };
   panel?: {
     background?: string;
