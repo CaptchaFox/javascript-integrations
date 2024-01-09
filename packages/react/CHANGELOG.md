@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.3.1
+
+### Patch Changes
+
+- e3e8992: fix: revert branching
+
 ## 1.3.0
 
 ### Minor Changes
