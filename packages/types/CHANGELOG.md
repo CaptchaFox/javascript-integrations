@@ -1,5 +1,11 @@
 # @captchafox/types
 
+## 1.2.0
+
+### Minor Changes
+
+- 10f784a: feat: add theme option
+
 ## 1.1.1
 
 ### Patch Changes

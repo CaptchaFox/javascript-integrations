@@ -1,6 +1,6 @@
 {
     "name": "@captchafox/solid",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "files": [
         "dist"
@@ -30,7 +30,7 @@
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
     },
     "dependencies": {
-        "@captchafox/types": "^1.1.1"
+        "@captchafox/types": "^1.2.0"
     },
     "peerDependencies": {
         "solid-js": "^1.6.0"

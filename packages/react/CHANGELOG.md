@@ -1,5 +1,16 @@
 # @captchafox/react
 
+## 1.3.0
+
+### Minor Changes
+
+- 10f784a: feat: add theme option
+
+### Patch Changes
+
+- Updated dependencies [10f784a]
+  - @captchafox/types@1.2.0
+
 ## 1.2.0
 
 ### Minor Changes
