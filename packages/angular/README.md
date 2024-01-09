@@ -53,11 +53,12 @@ Then you can use the `ngx-captchafox` component inside your template:
 
 ### Inputs
 
-| **Name** | **Type**                | **Description**                                                                 |
-| -------- | ----------------------- | ------------------------------------------------------------------------------- |
-| siteKey  | `string`                | The site key for the widget                                                     |
-| lang     | `string`                | The language the widget should display. Defaults to automatically detecting it. |
-| mode     | `inline\|popup\|hidden` | The mode the widget should be displayed in .                                    |
+| **Name** | **Type**                                                                                    | **Description**                                                                 |
+| -------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| siteKey  | `string`                                                                                    | The site key for the widget                                                     |
+| lang     | `string`                                                                                    | The language the widget should display. Defaults to automatically detecting it. |
+| mode     | `inline\|popup\|hidden`                                                                     | The mode the widget should be displayed in .                                    |
+| theme    | `light` \| `dark` \|  [`ThemeDefinition`](https://docs.captchafox.com/theming#custom-theme) | The theme of the widget. Defaults to light.                                     |
 
 ### Outputs
 

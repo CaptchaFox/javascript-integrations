@@ -28,6 +28,32 @@ export type RenderWidgetFunction = (
 
 export type WidgetDisplayMode = 'inline' | 'popup' | 'hidden';
 
+export type Theme = 'light' | 'dark' | ThemeDefinition;
+
+export type ThemeDefinition = {
+  general?: {
+    primary?: string;
+    success?: string;
+    error?: string;
+    borderRadius?: number;
+  };
+  button?: {
+    background?: string;
+    backgroundHover?: string;
+    text?: string;
+    checkbox?: string;
+  };
+  panel?: {
+    background?: string;
+    border?: string;
+    text?: string;
+  };
+  slider?: {
+    background?: string;
+    knob?: string;
+  };
+};
+
 export type WidgetOptions = {
   /** The sitekey for the widget. */
   sitekey: string;
@@ -35,14 +61,16 @@ export type WidgetOptions = {
   lang?: string;
   /** The mode the widget should be displayed in. */
   mode?: WidgetDisplayMode;
+  /** The theme of the widget. Defaults to light. */
+  theme?: Theme;
   /** Called when an error occurs. */
   onError?: (error?: Error | string) => void;
   /** Called with the response token after successful verification. */
   onVerify?: VerifyCallbackFunction;
   /** Called after the challenge expires. */
-  onExpire?: VoidFunction;
+  onExpire?: () => void;
   /** Called after unsuccessful verification. */
-  onFail?: VoidFunction;
+  onFail?: () => void;
   /** Called when the challenge was closed. */
-  onClose?: VoidFunction;
+  onClose?: () => void;
 };

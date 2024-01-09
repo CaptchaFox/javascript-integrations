@@ -5,7 +5,7 @@ import { Route, Router, Routes } from '@solidjs/router';
 import './index.scss';
 import Basic from './routes/BasicForm';
 import Home from './routes/Home';
-import Hidden from './routes/hidden';
+import Hidden from './routes/Hidden';
 
 const root = document.getElementById('root');
 

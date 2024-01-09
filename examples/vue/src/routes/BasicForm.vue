@@ -48,6 +48,7 @@ const isVerified = ref(false);
           <CaptchaFox
             ref="comp"
             sitekey="sk_11111111000000001111111100000000"
+            theme="dark"
             @verify="() => isVerified = true"
           />
         </fieldset>

@@ -34,16 +34,17 @@ function Example() {
 
 ### Props
 
-| **Prop** | **Type**                | **Description**                                                                 | **Required** |
-| -------- | ----------------------- | ------------------------------------------------------------------------------- | ------------ |
-| sitekey  | `string`                | The sitekey for the widget                                                      | ✅            |
-| lang     | `string`                | The language the widget should display. Defaults to automatically detecting it. |              |
-| mode     | `inline\|popup\|hidden` | The mode the widget should be displayed in .                                    |              |
-| onVerify | `function`              | Called with the response token after successful verification.                   |              |
-| onFail   | `function`              | Called after unsuccessful verification.                                         |              |
-| onError  | `function`              | Called when an error occured.                                                   |              |
-| onExpire | `function`              | Called when the challenge expires.                                              |              |
-| onClose  | `function`              | Called when the challenge was closed.                                           |              |
+| **Prop** | **Type**                                                                                    | **Description**                                                                 | **Required** |
+| -------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------ |
+| sitekey  | `string`                                                                                    | The sitekey for the widget                                                      | ✅            |
+| lang     | `string`                                                                                    | The language the widget should display. Defaults to automatically detecting it. |              |
+| mode     | `inline\|popup\|hidden`                                                                     | The mode the widget should be displayed in .                                    |              |
+| theme    | `light` \| `dark` \|  [`ThemeDefinition`](https://docs.captchafox.com/theming#custom-theme) | The theme of the widget. Defaults to light.                                     |
+| onVerify | `function`                                                                                  | Called with the response token after successful verification.                   |              |
+| onFail   | `function`                                                                                  | Called after unsuccessful verification.                                         |              |
+| onError  | `function`                                                                                  | Called when an error occured.                                                   |              |
+| onExpire | `function`                                                                                  | Called when the challenge expires.                                              |              |
+| onClose  | `function`                                                                                  | Called when the challenge was closed.                                           |              |
 
 ### Using the verification callback
 

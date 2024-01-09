@@ -15,7 +15,7 @@ import {
   forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import type { WidgetDisplayMode } from '@captchafox/types';
+import type { Theme, WidgetDisplayMode } from '@captchafox/types';
 import { Subscription, defer } from 'rxjs';
 import { CAPTCHA_CONFIG, CaptchaConfig } from './config';
 import { isApiReady, loadCaptchaScript } from './loader';
@@ -53,6 +53,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
   @Input() siteKey?: string;
   @Input() lang?: string;
   @Input() mode?: WidgetDisplayMode;
+  @Input() theme?: Theme;
 
   @Output() load: EventEmitter<void> = new EventEmitter<void>();
   @Output() verify: EventEmitter<string> = new EventEmitter<string>();
@@ -82,7 +83,8 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
     if (
       !changes.siteKey?.isFirstChange() &&
       !changes.mode?.isFirstChange() &&
-      !changes.lang?.isFirstChange()
+      !changes.lang?.isFirstChange() &&
+      !changes.theme?.isFirstChange()
     ) {
       window.captchafox?.remove(this.widgetId);
       await this.renderCaptcha();
@@ -127,6 +129,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
       lang: this.lang ?? this.config.language,
       sitekey: this.siteKey ?? this.config.siteKey ?? '',
       mode: this.mode ?? this.config.mode,
+      theme: this.theme ?? this.config.theme,
       onError: (error) => {
         this.zone.run(() => this.error.emit(error));
       },
