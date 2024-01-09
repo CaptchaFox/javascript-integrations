@@ -88,24 +88,22 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
       if (!containerRef) return;
 
       if (firstRendered.current) {
-        if (!isApiReady()) {
-          return;
+        if (isApiReady()) {
+          renderCaptcha();
         }
-
-        renderCaptcha();
+      } else {
+        loadCaptchaScript()
+          .then(async () => {
+            if (isApiReady()) {
+              firstRendered.current = true;
+              await renderCaptcha();
+            }
+          })
+          .catch((err) => {
+            onError?.(err);
+            console.error('[CaptchaFox] Could not load script:', err);
+          });
       }
-
-      loadCaptchaScript()
-        .then(async () => {
-          if (isApiReady()) {
-            firstRendered.current = true;
-            await renderCaptcha();
-          }
-        })
-        .catch((err) => {
-          onError?.(err);
-          console.error('[CaptchaFox] Could not load script:', err);
-        });
     }, [containerRef, sitekey, lang, mode]);
 
     return <div ref={setContainerRef} id={widgetId} className={className} />;
