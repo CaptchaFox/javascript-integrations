@@ -1,5 +1,11 @@
 # @captchafox/node
 
+## 1.2.0
+
+### Minor Changes
+
+- f68457c: feat: add new parameter to verify api
+
 ## 1.1.1
 
 ### Patch Changes
