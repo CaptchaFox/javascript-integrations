@@ -30,23 +30,30 @@ export type VerifyPayload = NodeJS.Dict<string> & {
   secret: string;
   /** The response token from the widget */
   response: string;
-  /** (Optional) the sitekey that was use to issue the token */
+  /** (Optional) The sitekey that was used to issue the token */
   sitekey?: string;
+  /** (Optional) The IP address of the requesting user */
+  remoteIp?: string;
 };
 
 export async function verify(
   secret: string,
   token: string,
-  sitekey?: string
+  sitekey?: string,
+  remoteIp?: string
 ): Promise<VerifyResponse> {
   return new Promise(function verifyPromise(resolve, reject) {
     const payload: VerifyPayload = { secret, response: token };
+
     if (sitekey) {
       payload.sitekey = sitekey;
     }
 
-    const data = stringify(payload);
+    if (remoteIp) {
+      payload.remoteIp = remoteIp;
+    }
 
+    const data = stringify(payload);
     const options = {
       host: HOST,
       path: API_PATH,
