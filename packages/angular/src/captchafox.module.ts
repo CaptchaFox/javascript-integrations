@@ -16,7 +16,7 @@ export class CaptchaFoxModule {
         CaptchaFoxService,
         {
           provide: CAPTCHA_CONFIG,
-          useValue: config || []
+          useValue: config || {}
         }
       ]
     };

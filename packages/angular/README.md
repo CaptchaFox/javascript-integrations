@@ -24,7 +24,9 @@ bun add @captchafox/angular
 
 ## Usage
 
-First, add the `CaptchaFoxModule` to your apps `imports` and initialize it.
+### Importing the Module
+
+Add the `CaptchaFoxModule` to your app's `imports` and initialize it.
 
 You can choose between using a global config for the whole app or specifing the config manually on each component.
 
@@ -41,7 +43,42 @@ import { CaptchaFoxModule } from '@captchafox/angular';
 export class AppModule {}
 ```
 
-Then you can use the `ngx-captchafox` component inside your template:
+#### Standalone
+
+In an application that uses standalone components, the setup is different.
+
+First, add `provideCaptchaFox` to `providers` in your `app.config.ts` and initialize it.
+
+You can choose between using a global config for the whole app or specifing the config manually on each component.
+
+```ts
+import { provideCaptchaFox } from '@captchafox/angular';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideCaptchaFox({ siteKey: '<YOUR_SITEKEY>' }),
+  ],
+};
+```
+
+Then, import the CaptchaFoxModule in your component.
+
+```ts
+import { CaptchaFoxModule } from '@captchafox/angular';
+
+@Component({
+  selector: 'example',
+  standalone: true,
+  imports: [CommonModule, CaptchaFoxModule],
+  ...
+})
+export class ExampleComponent {
+}
+```
+
+### Using the component
+
+After the setup, you can use the `ngx-captchafox` component inside your template:
 
 ```html
 <ngx-captchafox
