@@ -1,5 +1,11 @@
 # @captchafox/angular
 
+## 1.2.0
+
+### Minor Changes
+
+- 417df1e: feat: add standalone provider
+
 ## 1.1.0
 
 ### Minor Changes
