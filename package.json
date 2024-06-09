@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "javascript-integrations",
   "workspaces": [
     "packages/*",
     "examples/*"
@@ -25,11 +26,12 @@
     "eslint": "^8.51.0",
     "eslint-config-captchafox": "*",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-config-turbo": "^1.10.15",
+    "eslint-config-turbo": "^2.0.3",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-testing-library": "^6.0.2",
     "prettier": "^2.8.3",
-    "turbo": "^1.10.15",
+    "turbo": "^2.0.3",
     "husky": "^8.0.0"
-  }
+  },
+  "packageManager": "^npm@10.2.4"
 }
