@@ -25,7 +25,7 @@ describe('@captchafox/react', () => {
 
   beforeEach(() => {
     jest.spyOn(internal, 'isApiReady').mockReturnValue(true);
-    scriptLoadSpy = jest.spyOn(internal, 'loadCaptchaScript').mockResolvedValue();
+    scriptLoadSpy = jest.spyOn(internal as any, 'loadCaptchaScript').mockResolvedValue(void 0);
   });
 
   afterEach(() => {
