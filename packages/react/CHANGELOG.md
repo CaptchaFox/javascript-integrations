@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.4.0
+
+### Minor Changes
+
+- 66d21b1: feat: add nonce support
+
 ## 1.3.1
 
 ### Patch Changes

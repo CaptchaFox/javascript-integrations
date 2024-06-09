@@ -1,5 +1,11 @@
 # @captchafox/vue
 
+## 1.2.0
+
+### Minor Changes
+
+- 66d21b1: feat: add nonce support
+
 ## 1.1.0
 
 ### Minor Changes
