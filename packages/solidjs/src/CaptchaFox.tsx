@@ -12,6 +12,7 @@ type CaptchaFoxProps = WidgetOptions & {
   onLoad?: () => void;
   className?: string;
   ref?: Ref<CaptchaFoxInstance>;
+  nonce?: string;
 };
 
 export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
@@ -85,7 +86,7 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
   };
 
   onMount(() => {
-    loadCaptchaScript()
+    loadCaptchaScript({ nonce: props.nonce })
       .then(async () => {
         await renderCaptcha();
       })

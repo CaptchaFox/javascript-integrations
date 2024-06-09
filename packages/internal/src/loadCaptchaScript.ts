@@ -9,7 +9,11 @@ const mountInstance = new Promise<void>((resolve, reject) => {
 const LOAD_FUNC_KEY = 'captchaFoxOnLoad';
 const SCRIPT_SRC = `https://cdn.captchafox.com/api.js?render=explicit&onload=${LOAD_FUNC_KEY}`;
 
-export async function loadCaptchaScript(): Promise<void> {
+type LoadCaptchaScriptOptions = {
+  nonce?: string;
+};
+
+export async function loadCaptchaScript({ nonce }: LoadCaptchaScriptOptions = {}): Promise<void> {
   if (document.querySelector(`script[src="${SCRIPT_SRC}"]`)) return mountInstance;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,6 +24,9 @@ export async function loadCaptchaScript(): Promise<void> {
   script.async = true;
   script.defer = true;
   script.onerror = rejectFn;
+  if (nonce) {
+    script.nonce = nonce;
+  }
   document.body.appendChild(script);
 
   return mountInstance;

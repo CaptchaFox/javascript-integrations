@@ -6,13 +6,14 @@ type CaptchaFoxProps = WidgetOptions & {
   /** Called after the widget has been loaded */
   onLoad?: () => void;
   className?: string;
+  nonce?: string;
 };
 
 export type CaptchaFoxInstance = Omit<WidgetApi, 'render'>;
 
 export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
   (
-    { sitekey, lang, mode, theme, className, onError, onVerify, onLoad, onFail, onClose },
+    { sitekey, lang, mode, theme, className, nonce, onError, onVerify, onLoad, onFail, onClose },
     ref
   ): JSX.Element => {
     const [containerRef, setContainerRef] = useState<HTMLDivElement | null>();
@@ -92,7 +93,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
           renderCaptcha();
         }
       } else {
-        loadCaptchaScript()
+        loadCaptchaScript({ nonce })
           .then(async () => {
             if (isApiReady()) {
               firstRendered.current = true;

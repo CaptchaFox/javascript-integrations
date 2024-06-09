@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
-import type { WidgetApi } from '@captchafox/types';
+import type { WidgetApi, WidgetOptions } from '@captchafox/types';
 import { onMounted, ref, watch } from 'vue';
-import type { WidgetOptions } from '@captchafox/types';
 
 export type CaptchaFoxProps = Pick<WidgetOptions, 'sitekey' | 'lang' | 'mode' | 'theme'> & {
   modelValue?: string;
   containerClass?: string;
+  nonce?: string;
 };
 
 export type CaptchaFoxInstance = Omit<WidgetApi, 'render'>;
@@ -94,7 +94,7 @@ const renderCaptcha = async (): Promise<void> => {
 };
 
 onMounted(() => {
-  loadCaptchaScript()
+  loadCaptchaScript({ nonce: props.nonce })
     .then(async () => {
       if (isApiReady()) {
         await renderCaptcha();
