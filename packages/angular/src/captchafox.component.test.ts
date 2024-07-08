@@ -27,7 +27,7 @@ describe('CaptchaFoxComponent', () => {
     }
   ];
 
-  let scriptLoadSpy: SpyInstance;
+  let scriptLoadSpy: SpyInstance<typeof internal.loadCaptchaScript>;
 
   beforeEach(() => {
     jest.spyOn(internal, 'isApiReady').mockReturnValue(true);
