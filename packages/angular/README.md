@@ -96,6 +96,7 @@ After the setup, you can use the `ngx-captchafox` component inside your template
 | lang     | `string`                                                                                    | The language the widget should display. Defaults to automatically detecting it. |
 | mode     | `inline\|popup\|hidden`                                                                     | The mode the widget should be displayed in .                                    |
 | theme    | `light` \| `dark` \|  [`ThemeDefinition`](https://docs.captchafox.com/theming#custom-theme) | The theme of the widget. Defaults to light.                                     |
+| nonce    | `string`                                                                                    | Randomly generated nonce                                                        |
 
 ### Outputs
 

@@ -1,10 +1,8 @@
 import { isPlatformServer } from '@angular/common';
 import { Inject, Injectable, NgZone, OnDestroy, PLATFORM_ID } from '@angular/core';
-import { Observable, Subscriber, Subscription, defer, from } from 'rxjs';
+import { Observable, Subscriber, Subscription, from } from 'rxjs';
 import { CAPTCHA_CONFIG, CaptchaConfig } from './config';
 import { isApiReady, loadCaptchaScript } from './loader';
-
-const loadScriptObservable = defer(() => loadCaptchaScript());
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +43,7 @@ export class CaptchaFoxService implements OnDestroy {
     });
   }
 
-  public load(config?: Omit<CaptchaConfig, 'mode'>) {
+  public load(config?: Omit<CaptchaConfig, 'mode'> & { nonce?: string }) {
     return new Observable((subscriber: Subscriber<string>) => {
       if (isPlatformServer(this.platformId)) {
         return;
@@ -56,7 +54,7 @@ export class CaptchaFoxService implements OnDestroy {
         document.body.appendChild(this.containerEl);
       }
 
-      this.scriptLoader$ = loadScriptObservable.subscribe({
+      this.scriptLoader$ = from(loadCaptchaScript({ nonce: config?.nonce })).subscribe({
         next: async () => {
           try {
             await this.renderCaptcha(subscriber, config);
@@ -72,7 +70,7 @@ export class CaptchaFoxService implements OnDestroy {
     });
   }
 
-  private async renderCaptcha(subscriber: Subscriber<unknown>, config?: CaptchaConfig) {
+  private async renderCaptcha(subscriber: Subscriber<string>, config?: CaptchaConfig) {
     if (!isApiReady() || !this.containerEl) {
       return;
     }

@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { Theme, WidgetDisplayMode } from '@captchafox/types';
-import { Subscription, defer } from 'rxjs';
+import { Subscription, from } from 'rxjs';
 import { CAPTCHA_CONFIG, CaptchaConfig } from './config';
 import { isApiReady, loadCaptchaScript } from './loader';
 
@@ -35,8 +35,6 @@ type NgChanges<Component, Props = ExcludeFunctions<Component>> = {
   };
 };
 
-const loadScriptObservable = defer(() => loadCaptchaScript());
-
 @Component({
   selector: 'ngx-captchafox',
   template: `<div #container class="ngx-captchafox-container"></div>`,
@@ -54,6 +52,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
   @Input() lang?: string;
   @Input() mode?: WidgetDisplayMode;
   @Input() theme?: Theme;
+  @Input() nonce?: string;
 
   @Output() load: EventEmitter<void> = new EventEmitter<void>();
   @Output() verify: EventEmitter<string> = new EventEmitter<string>();
@@ -96,7 +95,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
       return;
     }
 
-    this.scriptLoader$ = loadScriptObservable.subscribe({
+    this.scriptLoader$ = from(loadCaptchaScript({ nonce: this.nonce })).subscribe({
       next: async () => {
         this.load.emit();
         try {
