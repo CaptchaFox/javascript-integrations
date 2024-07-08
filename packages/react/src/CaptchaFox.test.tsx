@@ -21,11 +21,11 @@ function setupCaptchaFoxWindow(options?: Partial<WidgetApi>) {
 }
 
 describe('@captchafox/react', () => {
-  let scriptLoadSpy: SpyInstance;
+  let scriptLoadSpy: SpyInstance<typeof internal.loadCaptchaScript>;
 
   beforeEach(() => {
     jest.spyOn(internal, 'isApiReady').mockReturnValue(true);
-    scriptLoadSpy = jest.spyOn(internal as any, 'loadCaptchaScript').mockResolvedValue(void 0);
+    scriptLoadSpy = jest.spyOn(internal, 'loadCaptchaScript').mockResolvedValue();
   });
 
   afterEach(() => {
