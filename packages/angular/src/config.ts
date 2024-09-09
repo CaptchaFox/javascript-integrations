@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Theme, WidgetDisplayMode } from '@captchafox/types';
+import { Theme, WidgetDisplayMode, WidgetI18nConfig } from '@captchafox/types';
 
 export interface CaptchaConfig {
   /**
@@ -21,6 +21,10 @@ export interface CaptchaConfig {
    * @see {@link https://docs.captchafox.com/theming}
    */
   theme?: Theme;
+  /**
+   * i18n configuration. Allows overriding i18n labels for specific languages.
+   */
+  i18n?: WidgetI18nConfig;
 }
 
 export const CAPTCHA_CONFIG = new InjectionToken<CaptchaConfig>('CAPTCHA_CONFIG');

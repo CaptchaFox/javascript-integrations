@@ -36,11 +36,12 @@ function Example() {
 
 | **Prop** | **Type**                                                                                            | **Description**                                                                 | **Required** |
 | -------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------ |
-| sitekey  | `string`                                                                                            | The sitekey for the widget                                                      | ✅            |
+| sitekey  | `string`                                                                                            | The sitekey for the widget.                                                     | ✅            |
 | lang     | `string`                                                                                            | The language the widget should display. Defaults to automatically detecting it. |              |
-| mode     | `inline\|popup\|hidden`                                                                             | The mode the widget should be displayed in .                                    |              |
+| mode     | `inline\|popup\|hidden`                                                                             | The mode the widget should be displayed in.                                     |              |
 | theme    | `light` &#124; `dark` &#124;  [`ThemeDefinition`](https://docs.captchafox.com/theming#custom-theme) | The theme of the widget. Defaults to light.                                     |              |
-| nonce    | `string`                                                                                            | Randomly generated nonce                                                        |              |
+| nonce    | `string`                                                                                            | Randomly generated nonce.                                                       |              |
+| i18n     | `object`                                                                                            | Custom i18n configuration.                                                      |              |
 | onVerify | `function`                                                                                          | Called with the response token after successful verification.                   |              |
 | onFail   | `function`                                                                                          | Called after unsuccessful verification.                                         |              |
 | onError  | `function`                                                                                          | Called when an error occured.                                                   |              |

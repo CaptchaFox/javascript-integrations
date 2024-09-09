@@ -15,7 +15,7 @@ import {
   forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import type { Theme, WidgetDisplayMode } from '@captchafox/types';
+import type { Theme, WidgetDisplayMode, WidgetI18nConfig } from '@captchafox/types';
 import { Subscription, from } from 'rxjs';
 import { CAPTCHA_CONFIG, CaptchaConfig } from './config';
 import { isApiReady, loadCaptchaScript } from './loader';
@@ -53,6 +53,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
   @Input() mode?: WidgetDisplayMode;
   @Input() theme?: Theme;
   @Input() nonce?: string;
+  @Input() i18n?: WidgetI18nConfig;
 
   @Output() load: EventEmitter<void> = new EventEmitter<void>();
   @Output() verify: EventEmitter<string> = new EventEmitter<string>();
@@ -129,6 +130,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
       sitekey: this.siteKey ?? this.config.siteKey ?? '',
       mode: this.mode ?? this.config.mode,
       theme: this.theme ?? this.config.theme,
+      i18n: this.i18n ?? this.config.i18n,
       onError: (error) => {
         this.zone.run(() => this.error.emit(error));
       },

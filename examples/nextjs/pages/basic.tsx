@@ -45,6 +45,7 @@ export default function Basic() {
                 sitekey="sk_11111111000000001111111100000000"
                 theme="dark"
                 onVerify={() => setVerified(true)}
+                i18n={{ en: { initial: 'Please start the test' } }}
               />
             </fieldset>
             <button type="submit" disabled={!isVerified}>

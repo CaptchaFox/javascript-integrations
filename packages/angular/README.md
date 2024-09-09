@@ -92,11 +92,12 @@ After the setup, you can use the `ngx-captchafox` component inside your template
 
 | **Name** | **Type**                                                                                    | **Description**                                                                 |
 | -------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| siteKey  | `string`                                                                                    | The site key for the widget                                                     |
+| siteKey  | `string`                                                                                    | The site key for the widget.                                                    |
 | lang     | `string`                                                                                    | The language the widget should display. Defaults to automatically detecting it. |
-| mode     | `inline\|popup\|hidden`                                                                     | The mode the widget should be displayed in .                                    |
+| mode     | `inline\|popup\|hidden`                                                                     | The mode the widget should be displayed in.                                     |
 | theme    | `light` \| `dark` \|  [`ThemeDefinition`](https://docs.captchafox.com/theming#custom-theme) | The theme of the widget. Defaults to light.                                     |
-| nonce    | `string`                                                                                    | Randomly generated nonce                                                        |
+| nonce    | `string`                                                                                    | Randomly generated nonce.                                                       |
+| i18n     | `object`                                                                                    | Custom i18n configuration.                                                      |
 
 ### Outputs
 
@@ -107,7 +108,7 @@ After the setup, you can use the `ngx-captchafox` component inside your template
 | error    | `function` | Called when an error occured.                                 |
 | expire   | `function` | Called when the challenge expires.                            |
 | close    | `function` | Called when the challenge was closed.                         |
-| load     | `function` | Called when the widget is ready                               |
+| load     | `function` | Called when the widget is ready.                              |
 
 ### Using the verify event
 

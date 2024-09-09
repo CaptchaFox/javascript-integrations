@@ -78,6 +78,7 @@ export class CaptchaFoxService implements OnDestroy {
     await window.captchafox?.render(this.containerEl, {
       lang: config?.language ?? this.config.language,
       sitekey: config?.siteKey ?? this.config.siteKey ?? '',
+      i18n: config?.i18n ?? this.config.i18n,
       mode: 'hidden',
       onError: (error) => {
         this.zone.run(() => subscriber.error(error));
