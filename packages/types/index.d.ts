@@ -55,8 +55,6 @@ export type ThemeDefinition = {
 };
 
 type Language =
-  | 'de'
-  | 'en'
   | 'sv'
   | 'ko'
   | 'da'
