@@ -54,6 +54,42 @@ export type ThemeDefinition = {
   };
 };
 
+type Language =
+  | 'sv'
+  | 'ko'
+  | 'da'
+  | 'cs'
+  | 'id'
+  | 'ru'
+  | 'uk'
+  | 'no'
+  | 'pt'
+  | 'tr'
+  | 'fi'
+  | 'en'
+  | 'fr'
+  | 'de'
+  | 'it'
+  | 'es'
+  | 'nl'
+  | 'tr'
+  | 'fi'
+  | 'ja'
+  | 'pl'
+  | 'ga'
+  | 'zh-tw'
+  | 'zh-cn';
+
+interface I18nLabels {
+  initial?: string;
+  progress?: string;
+  success?: string;
+  error?: string;
+  retry?: string;
+}
+
+export type WidgetI18nConfig = Partial<Record<Language, I18nLabels>>;
+
 export type WidgetOptions = {
   /** The sitekey for the widget. */
   sitekey: string;
@@ -63,6 +99,8 @@ export type WidgetOptions = {
   mode?: WidgetDisplayMode;
   /** The theme of the widget. Defaults to light. */
   theme?: Theme;
+  /** i18n configuration. Allows overriding i18n labels for specific languages. */
+  i18n?: WidgetI18nConfig;
   /** Called when an error occurs. */
   onError?: (error?: Error | string) => void;
   /** Called with the response token after successful verification. */

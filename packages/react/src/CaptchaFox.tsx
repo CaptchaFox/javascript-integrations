@@ -13,7 +13,20 @@ export type CaptchaFoxInstance = Omit<WidgetApi, 'render'>;
 
 export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
   (
-    { sitekey, lang, mode, theme, className, nonce, onError, onVerify, onLoad, onFail, onClose },
+    {
+      sitekey,
+      lang,
+      mode,
+      theme,
+      className,
+      nonce,
+      i18n,
+      onError,
+      onVerify,
+      onLoad,
+      onFail,
+      onClose
+    },
     ref
   ): JSX.Element => {
     const [containerRef, setContainerRef] = useState<HTMLDivElement | null>();
@@ -75,6 +88,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
         sitekey,
         mode,
         theme,
+        i18n,
         onError,
         onFail,
         onClose,

@@ -75,6 +75,7 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
       sitekey: props.sitekey,
       mode: props.mode,
       theme: props.theme,
+      i18n: props.i18n,
       onError: props.onError,
       onFail: props.onFail,
       onClose: props.onClose,
