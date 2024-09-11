@@ -1,5 +1,16 @@
 # @captchafox/react
 
+## 1.5.0
+
+### Minor Changes
+
+- e5e28d8: feat: allow overriding i18n configuration
+
+### Patch Changes
+
+- Updated dependencies [e5e28d8]
+  - @captchafox/types@1.3.0
+
 ## 1.4.0
 
 ### Minor Changes
