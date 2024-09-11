@@ -61,7 +61,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
               return;
             }
 
-            setWidgetId('');
+            setWidgetId(undefined);
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             window.captchafox!.remove(widgetId);
           },
@@ -77,6 +77,12 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
       },
       [widgetId]
     );
+
+    useEffect(() => {
+      if (widgetId) {
+        onLoad?.();
+      }
+    }, [widgetId]);
 
     const renderCaptcha = async (): Promise<void> => {
       window.captchafox?.remove(widgetId);
@@ -96,7 +102,6 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
       });
 
       setWidgetId(newWidgetId);
-      onLoad?.();
     };
 
     useEffect(() => {
