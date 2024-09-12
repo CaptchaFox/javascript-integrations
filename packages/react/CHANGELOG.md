@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.5.1
+
+### Patch Changes
+
+- 10682bf: fix: allow execution on load
+
 ## 1.5.0
 
 ### Minor Changes
