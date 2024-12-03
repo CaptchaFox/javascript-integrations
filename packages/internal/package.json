@@ -18,7 +18,7 @@
   "devDependencies": {
     "@captchafox/tsconfig": "*",
     "eslint-config-captchafox": "*",
-    "tsup": "^7.2.0",
+    "tsup": "^8.3.5",
     "typescript": "^5.0.2"
   }
 }
