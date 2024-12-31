@@ -1,4 +1,4 @@
-import { Component, createEffect, createSignal, on, onMount } from 'solid-js';
+import { Component, createEffect, createSignal, on, onCleanup } from 'solid-js';
 
 import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
 import type { WidgetApi, WidgetOptions } from '@captchafox/types';
@@ -86,23 +86,34 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
     props.onLoad?.();
   };
 
-  onMount(() => {
-    loadCaptchaScript({ nonce: props.nonce })
-      .then(async () => {
-        await renderCaptcha();
-      })
-      .catch((err: any) => {
-        props.onError?.(err);
-        // eslint-disable-next-line no-console
-        console.error('[CaptchaFox] Could not load script:', err);
-      });
+  onCleanup(() => {
+    if (!widgetId()) return;
+
+    try {
+      window.captchafox?.remove(widgetId());
+    } catch (err: any) {
+      // eslint-disable-next-line no-console
+      console.error('[CaptchaFox] Error during cleanup:', err);
+    }
   });
 
   createEffect(
     on(
       () => [props.sitekey, props.lang, props.mode, props.theme],
       async () => {
-        await renderCaptcha();
+        if (isApiReady()) {
+          await renderCaptcha();
+          return;
+        }
+
+        try {
+          await loadCaptchaScript({ nonce: props.nonce });
+          await renderCaptcha();
+        } catch (err: any) {
+          props.onError?.(err);
+          // eslint-disable-next-line no-console
+          console.error('[CaptchaFox] Could not load script:', err);
+        }
       }
     )
   );
