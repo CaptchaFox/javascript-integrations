@@ -20,7 +20,7 @@ function setupCaptchaFoxWindow(options?: Partial<WidgetApi>) {
   }) as unknown as WidgetApi;
 }
 
-describe('@captchafox/react', () => {
+describe('@captchafox/solid', () => {
   let scriptLoadSpy: SpyInstance<typeof internal.loadCaptchaScript>;
 
   beforeEach(() => {
@@ -46,15 +46,21 @@ describe('@captchafox/react', () => {
       render(() => <CaptchaFox sitekey="test" onLoad={loadSpy} />);
 
       await waitFor(() => {
-        expect(scriptLoadSpy).toHaveBeenCalledTimes(1);
-      });
-
-      await waitFor(() => {
         expect(renderSpy).toHaveBeenCalledWith(
           expect.any(HTMLElement),
           expect.objectContaining({ sitekey: 'test' })
         );
         expect(loadSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    it('should load script if api does not exist', async () => {
+      jest.spyOn(internal, 'isApiReady').mockReturnValue(false);
+
+      render(() => <CaptchaFox sitekey="test" />);
+
+      await waitFor(() => {
+        expect(scriptLoadSpy).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -84,7 +90,7 @@ describe('@captchafox/react', () => {
 
       render(() => <CaptchaFox sitekey={sitekey()} mode={mode()} lang={lang()} />);
 
-      expect(scriptLoadSpy).toHaveBeenCalledTimes(1);
+      expect(scriptLoadSpy).not.toHaveBeenCalled();
 
       await waitFor(() => {
         expect(renderSpy).toHaveBeenCalledWith(
@@ -156,14 +162,14 @@ describe('@captchafox/react', () => {
       expect(responseSpy).toHaveBeenCalledWith(mockWidgetId);
       expect(response).toEqual(mockResponseToken);
 
+      const executeToken = await refMethods.execute();
+      expect(executeSpy).toHaveBeenCalledWith(mockWidgetId);
+      expect(executeToken).toEqual(mockResponseToken);
+
       await waitFor(() => {
         refMethods.remove();
         expect(removeSpy).toHaveBeenCalled();
       });
-
-      const executeToken = await refMethods.execute();
-      expect(executeSpy).toHaveBeenCalledWith(mockWidgetId);
-      expect(executeToken).toEqual(mockResponseToken);
     });
 
     it('should not call methods if api is not available', async () => {
