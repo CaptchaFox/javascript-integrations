@@ -1,5 +1,11 @@
 # @captchafox/solid
 
+## 1.3.1
+
+### Patch Changes
+
+- 958009c: fix: prevent duplicate render
+
 ## 1.3.0
 
 ### Minor Changes
