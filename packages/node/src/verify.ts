@@ -1,5 +1,6 @@
 import { request } from 'https';
 import { stringify } from 'querystring';
+import { ParseError } from './errors/ParseError';
 
 const HOST = 'api.captchafox.com';
 const API_PATH = '/siteverify';
@@ -70,19 +71,33 @@ export async function verify(
       let responseBuffer = '';
 
       response
-        .on('error', reject)
+        .on('error', (error) => {
+          reject(error);
+        })
         .on('data', (chunk) => (responseBuffer += chunk))
         .on('end', () => {
           try {
             const json = JSON.parse(responseBuffer);
             resolve(json);
           } catch (error) {
+            if (error instanceof SyntaxError) {
+              const errorResponse = new ParseError({
+                code: response.statusCode,
+                message: error.message,
+                body: responseBuffer
+              });
+              reject(errorResponse);
+              return;
+            }
+
             reject(error);
           }
         });
     });
 
-    apiRequest.on('error', reject);
+    apiRequest.on('error', (error) => {
+      reject(error);
+    });
     apiRequest.write(data);
     apiRequest.end();
   });

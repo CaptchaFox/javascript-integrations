@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import nock from 'nock';
+import { ParseError } from './errors/ParseError';
 import { verify } from './verify';
 
 describe('@captchafox/node', () => {
@@ -29,13 +30,21 @@ describe('@captchafox/node', () => {
     expect(response).toEqual(noSuccessResponse);
   });
 
-  it('should throw error on invalid response', async () => {
-    mockRequest.reply(200, 'notjson');
-    expect(verify(secret, token)).rejects.toThrowError();
+  it('should throw parse error on invalid response', async () => {
+    const mockResponeBody = `notjson`;
+    mockRequest.reply(200, mockResponeBody);
+
+    try {
+      await verify(secret, token);
+    } catch (error) {
+      expect(error).toBeInstanceOf(ParseError);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((error as ParseError).body).toEqual(mockResponeBody);
+    }
   });
 
-  it('should throw error on request failure', async () => {
+  it('should throw error on request failure', () => {
     mockRequest.replyWithError('serverError');
-    expect(verify(secret, token)).rejects.toThrowError();
+    return expect(verify(secret, token)).rejects.toThrowError();
   });
 });
