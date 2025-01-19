@@ -1,6 +1,7 @@
 import { request } from 'https';
 import { stringify } from 'querystring';
 import { ParseError } from './errors/ParseError';
+import { withRetry } from './withRetry';
 
 const HOST = 'api.captchafox.com';
 const API_PATH = '/siteverify';
@@ -37,7 +38,7 @@ export type VerifyPayload = NodeJS.Dict<string> & {
   remoteIp?: string;
 };
 
-export async function verify(
+async function verifyRequest(
   secret: string,
   token: string,
   sitekey?: string,
@@ -101,4 +102,22 @@ export async function verify(
     apiRequest.write(data);
     apiRequest.end();
   });
+}
+
+type OptionalProps = {
+  /** (Optional) The sitekey that was used to issue the token */
+  sitekey?: string;
+  /** (Optional) The IP address of the requesting user */
+  remoteIp?: string;
+  retry?: { attempts?: number };
+};
+
+export async function verify(
+  secret: string,
+  token: string,
+  options?: OptionalProps
+): Promise<VerifyResponse> {
+  return withRetry<VerifyResponse>(() => {
+    return verifyRequest(secret, token, options?.sitekey, options?.remoteIp);
+  }, options?.retry);
 }
