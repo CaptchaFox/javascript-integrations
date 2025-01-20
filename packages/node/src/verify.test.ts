@@ -12,6 +12,10 @@ describe('@captchafox/node', () => {
     `secret=${secret}&response=${token}`
   );
 
+  afterEach(() => {
+    nock.cleanAll();
+  });
+
   it('should resolve on success', async () => {
     const successResponse = { success: true };
 
@@ -30,9 +34,23 @@ describe('@captchafox/node', () => {
     expect(response).toEqual(noSuccessResponse);
   });
 
+  it('should retry request on server errors', async () => {
+    const errorResponse = 'notjson';
+    const successResponse = { success: true };
+
+    mockRequest
+      .twice()
+      .reply(503, errorResponse)
+      .post('/siteverify', `secret=${secret}&response=${token}`)
+      .reply(200, JSON.stringify(successResponse));
+
+    const response = await verify(secret, token);
+    expect(response).toEqual(successResponse);
+  });
+
   it('should throw parse error on invalid response', async () => {
-    const mockResponeBody = `notjson`;
-    mockRequest.reply(200, mockResponeBody);
+    const mockResponeBody = 'notjson';
+    mockRequest.times(4).reply(200, mockResponeBody);
 
     try {
       await verify(secret, token);
@@ -44,7 +62,7 @@ describe('@captchafox/node', () => {
   });
 
   it('should throw error on request failure', () => {
-    mockRequest.replyWithError('serverError');
+    mockRequest.times(4).replyWithError('serverError');
     return expect(verify(secret, token)).rejects.toThrowError();
   });
 });
