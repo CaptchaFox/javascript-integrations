@@ -1,5 +1,11 @@
 # @captchafox/node
 
+## 1.4.0
+
+### Minor Changes
+
+- 2a3ab7e: feat: add retry on server failures
+
 ## 1.3.0
 
 ### Minor Changes
