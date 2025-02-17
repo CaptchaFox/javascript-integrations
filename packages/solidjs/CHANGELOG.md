@@ -1,5 +1,11 @@
 # @captchafox/solid
 
+## 1.4.0
+
+### Minor Changes
+
+- 1d55d54: feat: add retry to script loader
+
 ## 1.3.1
 
 ### Patch Changes
