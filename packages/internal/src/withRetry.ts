@@ -1,4 +1,4 @@
-export const backoff = (retryCount: number) => Math.exp(retryCount) * 200;
+export const backoff = (retryCount: number) => Math.exp(retryCount) * 150;
 
 export type WithRetryOptions = { attempts?: number };
 

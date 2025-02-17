@@ -1,15 +1,6 @@
 import { withRetry } from './withRetry.js';
 
-let resolveFn: () => void;
-let rejectFn: (error: string | Event) => void;
-
-const createMount = () =>
-  new Promise<void>((resolve, reject) => {
-    resolveFn = resolve;
-    rejectFn = reject;
-  });
-
-let mountInstance = createMount();
+let mountInstance: Promise<void> | undefined;
 
 const LOAD_FUNC_KEY = 'captchaFoxOnLoad';
 const SCRIPT_SRC = `https://cdn.captchafox.com/api.js?render=explicit&onload=${LOAD_FUNC_KEY}`;
@@ -19,26 +10,29 @@ type LoadCaptchaScriptOptions = {
 };
 
 async function loadScript({ nonce }: LoadCaptchaScriptOptions = {}): Promise<void> {
-  if (document.querySelector(`script[src="${SCRIPT_SRC}"]`)) {
+  if (mountInstance && document.querySelector(`script[src="${SCRIPT_SRC}"]`)) {
     return mountInstance;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (window as any)[LOAD_FUNC_KEY] = resolveFn;
+  mountInstance = new Promise<void>((resolve, reject) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any)[LOAD_FUNC_KEY] = resolve;
 
-  const script = document.createElement('script');
-  script.src = SCRIPT_SRC;
-  script.async = true;
-  script.defer = true;
-  script.onerror = (e) => {
-    script.remove();
-    rejectFn(e);
-    mountInstance = createMount();
-  };
-  if (nonce) {
-    script.nonce = nonce;
-  }
-  document.body.appendChild(script);
+    const script = document.createElement('script');
+    script.src = SCRIPT_SRC;
+    script.async = true;
+    script.defer = true;
+    script.onerror = (e) => {
+      script.remove();
+      reject(e);
+      mountInstance = undefined;
+    };
+    if (nonce) {
+      script.nonce = nonce;
+    }
+    document.body.appendChild(script);
+  });
+
   return mountInstance;
 }
 
