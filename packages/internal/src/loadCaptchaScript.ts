@@ -24,8 +24,8 @@ async function loadScript({ nonce }: LoadCaptchaScriptOptions = {}): Promise<voi
     script.defer = true;
     script.onerror = (e) => {
       script.remove();
-      reject(e);
       mountInstance = undefined;
+      reject(e);
     };
     if (nonce) {
       script.nonce = nonce;
