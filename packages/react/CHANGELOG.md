@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.6.0
+
+### Minor Changes
+
+- 1d55d54: feat: add retry to script loader
+
 ## 1.5.1
 
 ### Patch Changes
