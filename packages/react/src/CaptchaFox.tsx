@@ -1,4 +1,4 @@
-import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
+import { isApiReady, loadCaptchaScript, TimeoutError } from '@captchafox/internal';
 import type { WidgetApi, WidgetOptions } from '@captchafox/types';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
@@ -7,6 +7,7 @@ type CaptchaFoxProps = WidgetOptions & {
   onLoad?: () => void;
   className?: string;
   nonce?: string;
+  executeTimeoutSeconds?: number;
 };
 
 export type CaptchaFoxInstance = Omit<WidgetApi, 'render'>;
@@ -14,6 +15,7 @@ export type CaptchaFoxInstance = Omit<WidgetApi, 'render'>;
 export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
   (
     {
+      executeTimeoutSeconds = 30,
       sitekey,
       lang,
       mode,
@@ -32,6 +34,8 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
     const [containerRef, setContainerRef] = useState<HTMLDivElement | null>();
     const [widgetId, setWidgetId] = useState<string | undefined>();
     const firstRendered = useRef<boolean>(false);
+    const onReady = useRef<(id: string) => void | undefined>();
+    const executeTimeout = useRef<ReturnType<typeof setTimeout> | undefined>();
 
     useImperativeHandle(
       ref,
@@ -67,7 +71,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
           },
           execute: () => {
             if (!isApiReady() || !widgetId) {
-              return Promise.reject('[CaptchaFox] Widget has not been loaded');
+              return waitAndExecute();
             }
 
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -84,25 +88,9 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
       }
     }, [widgetId]);
 
-    const renderCaptcha = async (): Promise<void> => {
-      window.captchafox?.remove(widgetId);
-
-      if (!containerRef || containerRef?.children?.length === 1) return;
-
-      const newWidgetId = await window.captchafox?.render(containerRef as HTMLElement, {
-        lang,
-        sitekey,
-        mode,
-        theme,
-        i18n,
-        onError,
-        onFail,
-        onClose,
-        onVerify
-      });
-
-      setWidgetId(newWidgetId);
-    };
+    useEffect(() => {
+      return () => clearTimeout(executeTimeout.current);
+    }, []);
 
     useEffect(() => {
       if (!containerRef) return;
@@ -125,6 +113,49 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
           });
       }
     }, [containerRef, sitekey, lang, mode]);
+
+    const waitAndExecute = () => {
+      return new Promise<string>((resolve, reject) => {
+        executeTimeout.current = setTimeout(() => {
+          reject(new TimeoutError('Execute timed out'));
+        }, executeTimeoutSeconds * 1000);
+
+        onReady.current = (id: string) => {
+          clearTimeout(executeTimeout.current);
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          window.captchafox!.execute(id).then(resolve).catch(reject);
+        };
+      });
+    };
+
+    const renderCaptcha = async (): Promise<void> => {
+      window.captchafox?.remove(widgetId);
+
+      if (!containerRef || containerRef?.children?.length === 1) return;
+
+      const newWidgetId = await window.captchafox?.render(containerRef as HTMLElement, {
+        lang,
+        sitekey,
+        mode,
+        theme,
+        i18n,
+        onError,
+        onFail,
+        onClose,
+        onVerify
+      });
+
+      if (!newWidgetId) {
+        return;
+      }
+
+      setWidgetId(newWidgetId);
+
+      if (onReady.current) {
+        onReady.current(newWidgetId);
+        onReady.current = undefined;
+      }
+    };
 
     return <div ref={setContainerRef} id={widgetId} className={className} />;
   }

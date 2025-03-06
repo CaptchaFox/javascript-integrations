@@ -199,5 +199,27 @@ describe('@captchafox/react', () => {
       expect(refMethods.execute()).rejects.toBeDefined();
       expect(executeSpy).not.toHaveBeenCalled();
     });
+
+    it('should wait for load if execute not ready', async () => {
+      const mockWidgetId = 2;
+      const mockResponseToken = 'test-token';
+      const refSpy = jest.fn();
+      const executeSpy = jest.fn<any>().mockResolvedValue(mockResponseToken);
+      const renderSpy = jest.fn<any>().mockResolvedValue(mockWidgetId);
+
+      setupCaptchaFoxWindow({
+        render: renderSpy,
+        execute: executeSpy
+      });
+
+      render(<CaptchaFox sitekey="test" ref={refSpy} />);
+
+      const refMethods: any = refSpy.mock.lastCall?.[0];
+      refMethods.execute();
+
+      await waitFor(() => {
+        expect(executeSpy).toHaveBeenCalledWith(mockWidgetId);
+      });
+    });
   });
 });

@@ -1,3 +1,6 @@
+export class RetryError extends Error {}
+export class TimeoutError extends Error {}
+
 export const backoff = (retryCount: number) => Math.exp(retryCount) * 150;
 
 export type WithRetryOptions = { attempts?: number };
@@ -17,5 +20,5 @@ export const withRetry = async <T>(
     }
   }
 
-  throw error ?? new Error('Exhausted all retries');
+  throw new RetryError(error?.message ?? 'Exhausted all retries');
 };

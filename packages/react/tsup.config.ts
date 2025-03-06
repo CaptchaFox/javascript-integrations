@@ -6,7 +6,9 @@ export default defineConfig({
   },
   external: ['react'],
   format: ['esm', 'cjs'],
-  dts: true,
+  dts: {
+    resolve: ['@captchafox/internal']
+  },
   esbuildOptions(options) {
     options.banner = {
       js: '"use client";'
