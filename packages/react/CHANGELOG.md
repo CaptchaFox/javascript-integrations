@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.7.0
+
+### Minor Changes
+
+- 03e90fb: feat: wait until load before execute
+
 ## 1.6.0
 
 ### Minor Changes
