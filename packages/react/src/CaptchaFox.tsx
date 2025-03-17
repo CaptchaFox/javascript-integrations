@@ -1,4 +1,4 @@
-import { isApiReady, loadCaptchaScript, TimeoutError } from '@captchafox/internal';
+import { isApiReady, loadCaptchaScript, RetryError, TimeoutError } from '@captchafox/internal';
 import type { WidgetApi, WidgetOptions } from '@captchafox/types';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
@@ -69,13 +69,19 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             window.captchafox!.remove(widgetId);
           },
-          execute: () => {
+          execute: async () => {
             if (!isApiReady() || !widgetId) {
               return waitAndExecute();
             }
 
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            return window.captchafox!.execute(widgetId);
+            try {
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              const token = await window.captchafox!.execute(widgetId);
+              return token;
+            } catch (error) {
+              const errorType = getErrorType(error);
+              return Promise.reject(errorType);
+            }
           }
         };
       },
@@ -123,9 +129,23 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
         onReady.current = (id: string) => {
           clearTimeout(executeTimeout.current);
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          window.captchafox!.execute(id).then(resolve).catch(reject);
+          window
+            .captchafox!.execute(id)
+            .then(resolve)
+            .catch((error) => {
+              const errorType = getErrorType(error);
+              reject(errorType);
+            });
         };
       });
+    };
+
+    const getErrorType = (error: unknown) => {
+      if (error !== 'challenge-aborted' && error !== 'rate-limited') {
+        return new RetryError();
+      }
+
+      return error;
     };
 
     const renderCaptcha = async (): Promise<void> => {
