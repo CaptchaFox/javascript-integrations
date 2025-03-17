@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.8.0
+
+### Minor Changes
+
+- 864f087: feat: consolidate errors on execute
+
 ## 1.7.0
 
 ### Minor Changes
