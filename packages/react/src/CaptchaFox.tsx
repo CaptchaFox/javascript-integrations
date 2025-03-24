@@ -12,8 +12,6 @@ type CaptchaFoxProps = WidgetOptions & {
 
 export type CaptchaFoxInstance = Omit<WidgetApi, 'render'>;
 
-const SCRIPT_ERROR_EVENT = 'cf-script-error';
-
 export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
   (
     {
@@ -127,7 +125,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
             onError?.(err);
 
             hasScriptError.current = true;
-            window.dispatchEvent(new CustomEvent(SCRIPT_ERROR_EVENT));
+            scriptErrorListener.current?.();
 
             console.error('[CaptchaFox] Could not load script:', err);
           });
@@ -136,9 +134,6 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
 
     const clearEvents = () => {
       clearTimeout(executeTimeout.current);
-      if (scriptErrorListener.current) {
-        window.removeEventListener(SCRIPT_ERROR_EVENT, scriptErrorListener.current);
-      }
     };
 
     const waitAndExecute = () => {
@@ -147,7 +142,6 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
           clearEvents();
           reject(new RetryError());
         };
-        window.addEventListener(SCRIPT_ERROR_EVENT, scriptErrorListener.current);
 
         executeTimeout.current = setTimeout(() => {
           reject(new TimeoutError('Execute timed out'));
