@@ -36,6 +36,8 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
     const firstRendered = useRef<boolean>(false);
     const onReady = useRef<(id: string) => void | undefined>();
     const executeTimeout = useRef<ReturnType<typeof setTimeout> | undefined>();
+    const scriptErrorListener = useRef<() => void | undefined>();
+    const hasScriptError = useRef<boolean>(false);
 
     useImperativeHandle(
       ref,
@@ -70,6 +72,10 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
             window.captchafox!.remove(widgetId);
           },
           execute: async () => {
+            if (hasScriptError.current) {
+              return Promise.reject(new RetryError());
+            }
+
             if (!isApiReady() || !widgetId) {
               return waitAndExecute();
             }
@@ -95,7 +101,9 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
     }, [widgetId]);
 
     useEffect(() => {
-      return () => clearTimeout(executeTimeout.current);
+      return () => {
+        clearEvents();
+      };
     }, []);
 
     useEffect(() => {
@@ -115,19 +123,32 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
           })
           .catch((err) => {
             onError?.(err);
+
+            hasScriptError.current = true;
+            scriptErrorListener.current?.();
+
             console.error('[CaptchaFox] Could not load script:', err);
           });
       }
     }, [containerRef, sitekey, lang, mode]);
 
+    const clearEvents = () => {
+      clearTimeout(executeTimeout.current);
+    };
+
     const waitAndExecute = () => {
       return new Promise<string>((resolve, reject) => {
+        scriptErrorListener.current = () => {
+          clearEvents();
+          reject(new RetryError());
+        };
+
         executeTimeout.current = setTimeout(() => {
           reject(new TimeoutError('Execute timed out'));
         }, executeTimeoutSeconds * 1000);
 
         onReady.current = (id: string) => {
-          clearTimeout(executeTimeout.current);
+          clearEvents();
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           window
             .captchafox!.execute(id)
