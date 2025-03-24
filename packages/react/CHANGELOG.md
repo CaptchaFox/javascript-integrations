@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.9.0
+
+### Minor Changes
+
+- f64c792: feat: handle script load error in execute
+
 ## 1.8.0
 
 ### Minor Changes
