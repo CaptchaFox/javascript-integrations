@@ -27,7 +27,9 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
       onVerify,
       onLoad,
       onFail,
-      onClose
+      onClose,
+      onChallengeChange,
+      onChallengeOpen
     },
     ref
   ): JSX.Element => {
@@ -183,7 +185,9 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
         onError,
         onFail,
         onClose,
-        onVerify
+        onVerify,
+        onChallengeChange,
+        onChallengeOpen
       });
 
       if (!newWidgetId) {

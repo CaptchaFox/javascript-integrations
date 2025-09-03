@@ -63,6 +63,8 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
   >();
   @Output() fail: EventEmitter<void> = new EventEmitter<void>();
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
+  @Output() challengeOpen: EventEmitter<void> = new EventEmitter<void>();
+  @Output() challengeChange: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('container', { static: true }) containerEl?: ElementRef;
 
@@ -148,6 +150,12 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
       },
       onExpire: () => {
         this.zone.run(() => this.expire.emit());
+      },
+      onChallengeChange: () => {
+        this.zone.run(() => this.challengeChange.emit());
+      },
+      onChallengeOpen: () => {
+        this.zone.run(() => this.challengeOpen.emit());
       }
     });
 

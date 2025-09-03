@@ -29,6 +29,10 @@ const emit = defineEmits<{
   fail: [];
   /** Called after the widget has been loaded */
   load: [];
+  /** Called after the challenge opened */
+  challengeOpen: [];
+  /** Called after the challenge changed */
+  challengeChange: [];
   'update:modelValue': [token: string];
 }>();
 
@@ -87,7 +91,9 @@ const renderCaptcha = async (): Promise<void> => {
       emit('verify', token);
       emit('update:modelValue', token);
     },
-    onExpire: () => emit('expire')
+    onExpire: () => emit('expire'),
+    onChallengeChange: () => emit('challengeChange'),
+    onChallengeOpen: () => emit('challengeOpen')
   });
 
   widgetId.value = newWidgetId;
