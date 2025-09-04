@@ -1,5 +1,11 @@
 # @captchafox/types
 
+## 1.4.0
+
+### Minor Changes
+
+- 6f721ae: feat: add new event types
+
 ## 1.3.0
 
 ### Minor Changes
