@@ -111,4 +111,8 @@ export type WidgetOptions = {
   onFail?: () => void;
   /** Called when the challenge was closed. */
   onClose?: () => void;
+  /** Called when the challenge opened. */
+  onChallengeOpen?: () => void;
+  /** Called when the challenge changed. */
+  onChallengeChange?: () => void;
 };

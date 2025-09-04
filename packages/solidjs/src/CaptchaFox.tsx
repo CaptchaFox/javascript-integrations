@@ -79,7 +79,9 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
       onError: props.onError,
       onFail: props.onFail,
       onClose: props.onClose,
-      onVerify: props.onVerify
+      onVerify: props.onVerify,
+      onChallengeChange: props.onChallengeChange,
+      onChallengeOpen: props.onChallengeOpen
     });
 
     setWidgetId(newWidgetId);
