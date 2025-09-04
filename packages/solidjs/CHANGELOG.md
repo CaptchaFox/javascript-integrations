@@ -1,5 +1,16 @@
 # @captchafox/solid
 
+## 1.5.0
+
+### Minor Changes
+
+- 6f721ae: feat: add new event types
+
+### Patch Changes
+
+- Updated dependencies [6f721ae]
+  - @captchafox/types@1.4.0
+
 ## 1.4.0
 
 ### Minor Changes
