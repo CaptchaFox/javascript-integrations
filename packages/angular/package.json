@@ -20,6 +20,7 @@
     "@captchafox/types": "^1.4.0"
   },
   "devDependencies": {
+    "@angular/animations": "^16.2.7",
     "@angular/cli": "^16.2.7",
     "@angular/compiler-cli": "^16.2.0",
     "@jest/globals": "^29.7.0",
