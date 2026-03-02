@@ -1,4 +1,10 @@
-import { isApiReady, loadCaptchaScript, RetryError, TimeoutError } from '@captchafox/internal';
+import {
+  isApiReady,
+  loadCaptchaScript,
+  RetryError,
+  setVersion,
+  TimeoutError
+} from '@captchafox/internal';
 import type { WidgetApi, WidgetOptions } from '@captchafox/types';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
@@ -103,6 +109,8 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
     }, [widgetId]);
 
     useEffect(() => {
+      setVersion('rj');
+
       return () => {
         clearEvents();
       };
