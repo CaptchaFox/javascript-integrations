@@ -1,5 +1,11 @@
 # @captchafox/node
 
+## 1.5.0
+
+### Minor Changes
+
+- 4e29c7f: feat: add telemetry
+
 ## 1.4.0
 
 ### Minor Changes

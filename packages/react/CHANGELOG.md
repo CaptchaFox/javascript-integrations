@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.11.0
+
+### Minor Changes
+
+- 4e29c7f: feat: add telemetry
+
 ## 1.10.0
 
 ### Minor Changes
