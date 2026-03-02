@@ -62,7 +62,8 @@ async function verifyRequest(
       method: 'POST',
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
-        'content-length': Buffer.byteLength(data)
+        'content-length': Buffer.byteLength(data),
+        'x-spark': `nj-${process.env.VERSION}`
       }
     };
 

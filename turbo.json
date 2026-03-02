@@ -1,5 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "VERSION"
+  ],
   "tasks": {
     "build": {
       "outputs": [
