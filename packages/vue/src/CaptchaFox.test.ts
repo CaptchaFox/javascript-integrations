@@ -35,12 +35,12 @@ describe('@captchafox/vue', () => {
       const renderSpy = vi.fn().mockResolvedValue(1);
       setupCaptchaFoxWindow({ render: renderSpy });
 
-      const { emitted } = render(CaptchaFox, { props: { sitekey: 'test' } });
+      const { emitted } = render(CaptchaFox, { props: { sitekey: 'test', hideClose: true } });
 
       await waitFor(() => {
         expect(renderSpy).toHaveBeenCalledWith(
           expect.any(HTMLElement),
-          expect.objectContaining({ sitekey: 'test' })
+          expect.objectContaining({ sitekey: 'test', hideClose: true })
         );
       });
 
@@ -91,6 +91,13 @@ describe('@captchafox/vue', () => {
       expect(renderSpy).toHaveBeenCalledWith(
         expect.any(HTMLElement),
         expect.objectContaining({ sitekey: 'another-key', mode: 'inline' })
+      );
+
+      await wrapper.setProps({ hideClose: true });
+
+      expect(renderSpy).toHaveBeenCalledWith(
+        expect.any(HTMLElement),
+        expect.objectContaining({ sitekey: 'another-key', hideClose: true })
       );
 
       await wrapper.setProps({ lang: 'es' });

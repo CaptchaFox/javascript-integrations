@@ -25,6 +25,10 @@ export interface CaptchaConfig {
    * i18n configuration. Allows overriding i18n labels for specific languages.
    */
   i18n?: WidgetI18nConfig;
+  /**
+   * Hide the close button. This will prevent users from closing the widget modal.
+   */
+  hideClose?: boolean;
 }
 
 export const CAPTCHA_CONFIG = new InjectionToken<CaptchaConfig>('CAPTCHA_CONFIG');

@@ -49,7 +49,7 @@ describe('CaptchaFoxComponent', () => {
     setupCaptchaFoxWindow({ render: renderSpy });
 
     await render(CaptchaFoxComponent, {
-      componentProperties: { siteKey: 'test' },
+      componentProperties: { siteKey: 'test', hideClose: true },
       componentOutputs: {
         load: {
           emit: loadSpy
@@ -63,7 +63,7 @@ describe('CaptchaFoxComponent', () => {
     await waitFor(() => {
       expect(renderSpy).toHaveBeenCalledWith(
         expect.any(HTMLElement),
-        expect.objectContaining({ sitekey: 'test' })
+        expect.objectContaining({ sitekey: 'test', hideClose: true })
       );
     });
 
@@ -139,6 +139,17 @@ describe('CaptchaFoxComponent', () => {
     });
 
     await rerender({
+      componentInputs: { siteKey: 'another-key', hideClose: true }
+    });
+
+    await waitFor(() => {
+      expect(renderSpy).toHaveBeenCalledWith(
+        expect.any(HTMLElement),
+        expect.objectContaining({ sitekey: 'another-key', hideClose: true })
+      );
+    });
+
+    await rerender({
       componentInputs: { siteKey: 'another-key', lang: 'ja' }
     });
 
@@ -162,7 +173,8 @@ describe('CaptchaFoxComponent', () => {
           useValue: {
             siteKey: 'another',
             mode: 'hidden',
-            language: 'it'
+            language: 'it',
+            hideClose: true
           }
         }
       ]
@@ -171,7 +183,31 @@ describe('CaptchaFoxComponent', () => {
     await waitFor(() => {
       expect(renderSpy).toHaveBeenCalledWith(
         expect.any(HTMLElement),
-        expect.objectContaining({ sitekey: 'test', mode: 'hidden', lang: 'it' })
+        expect.objectContaining({ sitekey: 'test', mode: 'hidden', lang: 'it', hideClose: true })
+      );
+    });
+  });
+
+  it('should prefer input hideClose over global config', async () => {
+    const renderSpy = jest.fn<any>().mockResolvedValue(1);
+    setupCaptchaFoxWindow({ render: renderSpy });
+
+    await render(CaptchaFoxComponent, {
+      componentProperties: { siteKey: 'test', hideClose: false },
+      providers: [
+        {
+          provide: CAPTCHA_CONFIG,
+          useValue: {
+            hideClose: true
+          }
+        }
+      ]
+    });
+
+    await waitFor(() => {
+      expect(renderSpy).toHaveBeenCalledWith(
+        expect.any(HTMLElement),
+        expect.objectContaining({ sitekey: 'test', hideClose: false })
       );
     });
   });

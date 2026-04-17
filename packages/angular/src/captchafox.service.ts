@@ -79,6 +79,7 @@ export class CaptchaFoxService implements OnDestroy {
       lang: config?.language ?? this.config.language,
       sitekey: config?.siteKey ?? this.config.siteKey ?? '',
       i18n: config?.i18n ?? this.config.i18n,
+      hideClose: config?.hideClose ?? this.config.hideClose,
       mode: 'hidden',
       onError: (error) => {
         this.zone.run(() => subscriber.error(error));

@@ -101,6 +101,8 @@ export type WidgetOptions = {
   theme?: Theme;
   /** i18n configuration. Allows overriding i18n labels for specific languages. */
   i18n?: WidgetI18nConfig;
+  /** Hide the close button. This will prevent users from closing the widget modal */
+  hideClose?: boolean;
   /** Called when an error occurs. */
   onError?: (error?: Error | string) => void;
   /** Called with the response token after successful verification. */

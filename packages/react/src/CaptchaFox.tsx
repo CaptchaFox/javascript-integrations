@@ -29,6 +29,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
       className,
       nonce,
       i18n,
+      hideClose,
       onError,
       onVerify,
       onLoad,
@@ -140,7 +141,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
             console.error('[CaptchaFox] Could not load script:', err);
           });
       }
-    }, [containerRef, sitekey, lang, mode]);
+    }, [containerRef, sitekey, lang, mode, hideClose]);
 
     const clearEvents = () => {
       clearTimeout(executeTimeout.current);
@@ -190,6 +191,7 @@ export const CaptchaFox = forwardRef<CaptchaFoxInstance, CaptchaFoxProps>(
         mode,
         theme,
         i18n,
+        hideClose,
         onError,
         onFail,
         onClose,

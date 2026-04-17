@@ -43,14 +43,14 @@ describe('@captchafox/react', () => {
       const loadSpy = jest.fn();
       setupCaptchaFoxWindow({ render: renderSpy });
 
-      render(<CaptchaFox sitekey="test" onLoad={loadSpy} />);
+      render(<CaptchaFox sitekey="test" hideClose onLoad={loadSpy} />);
 
       expect(scriptLoadSpy).toHaveBeenCalledTimes(1);
 
       await waitFor(() => {
         expect(renderSpy).toHaveBeenCalledWith(
           expect.any(HTMLElement),
-          expect.objectContaining({ sitekey: 'test' })
+          expect.objectContaining({ sitekey: 'test', hideClose: true })
         );
       });
 
@@ -104,6 +104,15 @@ describe('@captchafox/react', () => {
         expect(renderSpy).toHaveBeenCalledWith(
           expect.any(HTMLElement),
           expect.objectContaining({ sitekey: 'another-key', mode: 'inline' })
+        );
+      });
+
+      rerender(<CaptchaFox sitekey="another-key" hideClose />);
+
+      await waitFor(() => {
+        expect(renderSpy).toHaveBeenCalledWith(
+          expect.any(HTMLElement),
+          expect.objectContaining({ sitekey: 'another-key', hideClose: true })
         );
       });
 

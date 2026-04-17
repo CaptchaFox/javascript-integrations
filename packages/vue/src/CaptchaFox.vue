@@ -3,7 +3,10 @@ import { isApiReady, loadCaptchaScript } from '@captchafox/internal';
 import type { WidgetApi, WidgetOptions } from '@captchafox/types';
 import { onMounted, ref, watch } from 'vue';
 
-export type CaptchaFoxProps = Pick<WidgetOptions, 'sitekey' | 'lang' | 'mode' | 'theme' | 'i18n'> & {
+export type CaptchaFoxProps = Pick<
+  WidgetOptions,
+  'sitekey' | 'lang' | 'mode' | 'theme' | 'i18n' | 'hideClose'
+> & {
   modelValue?: string;
   containerClass?: string;
   nonce?: string;
@@ -84,6 +87,7 @@ const renderCaptcha = async (): Promise<void> => {
     mode: props.mode,
     theme: props.theme,
     i18n: props.i18n,
+    hideClose: props.hideClose,
     onError: (error) => emit('error', error),
     onFail: () => emit('fail'),
     onClose: () => emit('close'),
@@ -108,19 +112,25 @@ onMounted(() => {
       }
     })
     .catch((error) => {
-      emit('error', error)
+      emit('error', error);
       console.error('[CaptchaFox] Could not load script:', error);
     });
 });
 
-watch([() => props.lang, () => props.mode, () => props.sitekey, () => props.theme], async () => {
-  await renderCaptcha()
-});
+watch(
+  [
+    () => props.lang,
+    () => props.mode,
+    () => props.sitekey,
+    () => props.theme,
+    () => props.hideClose
+  ],
+  async () => {
+    await renderCaptcha();
+  }
+);
 </script>
 
 <template>
-  <div
-    ref="container"
-    :class="containerClass"
-  />
+  <div ref="container" :class="containerClass" />
 </template>

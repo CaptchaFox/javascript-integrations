@@ -54,6 +54,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
   @Input() theme?: Theme;
   @Input() nonce?: string;
   @Input() i18n?: WidgetI18nConfig;
+  @Input() hideClose?: boolean;
 
   @Output() load: EventEmitter<void> = new EventEmitter<void>();
   @Output() verify: EventEmitter<string> = new EventEmitter<string>();
@@ -86,7 +87,8 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
       !changes.siteKey?.isFirstChange() &&
       !changes.mode?.isFirstChange() &&
       !changes.lang?.isFirstChange() &&
-      !changes.theme?.isFirstChange()
+      !changes.theme?.isFirstChange() &&
+      !changes.hideClose?.isFirstChange()
     ) {
       window.captchafox?.remove(this.widgetId);
       await this.renderCaptcha();
@@ -133,6 +135,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
       mode: this.mode ?? this.config.mode,
       theme: this.theme ?? this.config.theme,
       i18n: this.i18n ?? this.config.i18n,
+      hideClose: this.hideClose ?? this.config.hideClose,
       onError: (error) => {
         this.zone.run(() => this.error.emit(error));
       },
