@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.12.0
+
+### Minor Changes
+
+- c661f13: Add the `hideClose` widget option to all browser integration packages.
+
 ## 1.11.0
 
 ### Minor Changes
