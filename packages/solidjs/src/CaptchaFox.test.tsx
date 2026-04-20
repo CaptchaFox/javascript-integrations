@@ -43,12 +43,12 @@ describe('@captchafox/solid', () => {
       const loadSpy = jest.fn();
       setupCaptchaFoxWindow({ render: renderSpy });
 
-      render(() => <CaptchaFox sitekey="test" onLoad={loadSpy} />);
+      render(() => <CaptchaFox sitekey="test" hideClose onLoad={loadSpy} />);
 
       await waitFor(() => {
         expect(renderSpy).toHaveBeenCalledWith(
           expect.any(HTMLElement),
-          expect.objectContaining({ sitekey: 'test' })
+          expect.objectContaining({ sitekey: 'test', hideClose: true })
         );
         expect(loadSpy).toHaveBeenCalledTimes(1);
       });
@@ -85,10 +85,13 @@ describe('@captchafox/solid', () => {
       const [sitekey, setSitekey] = createSignal('test');
       const [lang, setLang] = createSignal<string>();
       const [mode, setMode] = createSignal<WidgetDisplayMode>();
+      const [hideClose, setHideClose] = createSignal<boolean>();
       const renderSpy = jest.fn<any>().mockResolvedValue(1);
       setupCaptchaFoxWindow({ render: renderSpy });
 
-      render(() => <CaptchaFox sitekey={sitekey()} mode={mode()} lang={lang()} />);
+      render(() => (
+        <CaptchaFox sitekey={sitekey()} mode={mode()} lang={lang()} hideClose={hideClose()} />
+      ));
 
       expect(scriptLoadSpy).not.toHaveBeenCalled();
 
@@ -114,6 +117,15 @@ describe('@captchafox/solid', () => {
         expect(renderSpy).toHaveBeenCalledWith(
           expect.any(HTMLElement),
           expect.objectContaining({ sitekey: 'another-key', mode: 'inline' })
+        );
+      });
+
+      setHideClose(true);
+
+      await waitFor(() => {
+        expect(renderSpy).toHaveBeenCalledWith(
+          expect.any(HTMLElement),
+          expect.objectContaining({ sitekey: 'another-key', hideClose: true })
         );
       });
 
