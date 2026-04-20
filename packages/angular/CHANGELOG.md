@@ -1,5 +1,11 @@
 # @captchafox/angular
 
+## 1.6.0
+
+### Minor Changes
+
+- c661f13: Add the `hideClose` widget option to all browser integration packages.
+
 ## 1.5.0
 
 ### Minor Changes
