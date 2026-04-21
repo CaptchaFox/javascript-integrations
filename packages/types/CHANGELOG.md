@@ -1,5 +1,11 @@
 # @captchafox/types
 
+## 1.5.0
+
+### Minor Changes
+
+- 267d46b: feat: add hideClose option
+
 ## 1.4.0
 
 ### Minor Changes
