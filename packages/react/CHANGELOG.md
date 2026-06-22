@@ -1,5 +1,11 @@
 # @captchafox/react
 
+## 1.12.1
+
+### Patch Changes
+
+- 4286b37: fix: readd missing events
+
 ## 1.12.0
 
 ### Minor Changes

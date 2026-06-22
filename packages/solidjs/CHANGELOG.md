@@ -1,5 +1,11 @@
 # @captchafox/solid
 
+## 1.6.1
+
+### Patch Changes
+
+- 4286b37: fix: readd missing events
+
 ## 1.6.0
 
 ### Minor Changes
