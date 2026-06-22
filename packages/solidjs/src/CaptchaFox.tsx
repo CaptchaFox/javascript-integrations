@@ -81,6 +81,7 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
       onFail: props.onFail,
       onClose: props.onClose,
       onVerify: props.onVerify,
+      onExpire: props.onExpire,
       onChallengeChange: props.onChallengeChange,
       onChallengeOpen: props.onChallengeOpen
     });
