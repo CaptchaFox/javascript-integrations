@@ -1,7 +1,7 @@
 import { CaptchaFox } from '.';
 
 import * as internal from '@captchafox/internal';
-import { WidgetApi, WidgetDisplayMode } from '@captchafox/types';
+import { WidgetApi, WidgetDisplayMode, WidgetStart } from '@captchafox/types';
 import { afterAll, afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { render, waitFor } from '@solidjs/testing-library';
 import '@testing-library/jest-dom';
@@ -85,12 +85,19 @@ describe('@captchafox/solid', () => {
       const [sitekey, setSitekey] = createSignal('test');
       const [lang, setLang] = createSignal<string>();
       const [mode, setMode] = createSignal<WidgetDisplayMode>();
+      const [start, setStart] = createSignal<WidgetStart>();
       const [hideClose, setHideClose] = createSignal<boolean>();
       const renderSpy = jest.fn<any>().mockResolvedValue(1);
       setupCaptchaFoxWindow({ render: renderSpy });
 
       render(() => (
-        <CaptchaFox sitekey={sitekey()} mode={mode()} lang={lang()} hideClose={hideClose()} />
+        <CaptchaFox
+          sitekey={sitekey()}
+          mode={mode()}
+          start={start()}
+          lang={lang()}
+          hideClose={hideClose()}
+        />
       ));
 
       expect(scriptLoadSpy).not.toHaveBeenCalled();
@@ -117,6 +124,15 @@ describe('@captchafox/solid', () => {
         expect(renderSpy).toHaveBeenCalledWith(
           expect.any(HTMLElement),
           expect.objectContaining({ sitekey: 'another-key', mode: 'inline' })
+        );
+      });
+
+      setStart('auto');
+
+      await waitFor(() => {
+        expect(renderSpy).toHaveBeenCalledWith(
+          expect.any(HTMLElement),
+          expect.objectContaining({ sitekey: 'another-key', start: 'auto' })
         );
       });
 

@@ -28,6 +28,8 @@ export type RenderWidgetFunction = (
 
 export type WidgetDisplayMode = 'inline' | 'popup' | 'hidden';
 
+export type WidgetStart = 'none' | 'auto' | 'focus';
+
 export type Theme = 'light' | 'dark' | ThemeDefinition;
 
 export type ThemeDefinition = {
@@ -97,6 +99,8 @@ export type WidgetOptions = {
   lang?: string;
   /** The mode the widget should be displayed in. */
   mode?: WidgetDisplayMode;
+  /** Controls when the verification begins. Defaults to `none`. */
+  start?: WidgetStart;
   /** The theme of the widget. Defaults to light. */
   theme?: Theme;
   /** i18n configuration. Allows overriding i18n labels for specific languages. */

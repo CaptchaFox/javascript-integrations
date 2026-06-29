@@ -15,7 +15,7 @@ import {
   forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import type { Theme, WidgetDisplayMode, WidgetI18nConfig } from '@captchafox/types';
+import type { Theme, WidgetDisplayMode, WidgetI18nConfig, WidgetStart } from '@captchafox/types';
 import { Subscription, from } from 'rxjs';
 import { CAPTCHA_CONFIG, CaptchaConfig } from './config';
 import { isApiReady, loadCaptchaScript } from './loader';
@@ -51,6 +51,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
   @Input() siteKey?: string;
   @Input() lang?: string;
   @Input() mode?: WidgetDisplayMode;
+  @Input() start?: WidgetStart;
   @Input() theme?: Theme;
   @Input() nonce?: string;
   @Input() i18n?: WidgetI18nConfig;
@@ -86,6 +87,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
     if (
       !changes.siteKey?.isFirstChange() &&
       !changes.mode?.isFirstChange() &&
+      !changes.start?.isFirstChange() &&
       !changes.lang?.isFirstChange() &&
       !changes.theme?.isFirstChange() &&
       !changes.hideClose?.isFirstChange()
@@ -133,6 +135,7 @@ export class CaptchaFoxComponent implements OnInit, OnDestroy, OnChanges, Contro
       lang: this.lang ?? this.config.language,
       sitekey: this.siteKey ?? this.config.siteKey ?? '',
       mode: this.mode ?? this.config.mode,
+      start: this.start ?? this.config.start,
       theme: this.theme ?? this.config.theme,
       i18n: this.i18n ?? this.config.i18n,
       hideClose: this.hideClose ?? this.config.hideClose,

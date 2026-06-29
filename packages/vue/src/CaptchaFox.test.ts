@@ -93,6 +93,13 @@ describe('@captchafox/vue', () => {
         expect.objectContaining({ sitekey: 'another-key', mode: 'inline' })
       );
 
+      await wrapper.setProps({ start: 'auto' });
+
+      expect(renderSpy).toHaveBeenCalledWith(
+        expect.any(HTMLElement),
+        expect.objectContaining({ sitekey: 'another-key', start: 'auto' })
+      );
+
       await wrapper.setProps({ hideClose: true });
 
       expect(renderSpy).toHaveBeenCalledWith(
