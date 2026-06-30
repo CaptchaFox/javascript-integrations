@@ -107,6 +107,15 @@ describe('@captchafox/react', () => {
         );
       });
 
+      rerender(<CaptchaFox sitekey="another-key" start="auto" />);
+
+      await waitFor(() => {
+        expect(renderSpy).toHaveBeenCalledWith(
+          expect.any(HTMLElement),
+          expect.objectContaining({ sitekey: 'another-key', start: 'auto' })
+        );
+      });
+
       rerender(<CaptchaFox sitekey="another-key" hideClose />);
 
       await waitFor(() => {

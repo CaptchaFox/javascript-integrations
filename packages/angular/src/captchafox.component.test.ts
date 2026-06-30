@@ -139,6 +139,17 @@ describe('CaptchaFoxComponent', () => {
     });
 
     await rerender({
+      componentInputs: { siteKey: 'another-key', start: 'auto' }
+    });
+
+    await waitFor(() => {
+      expect(renderSpy).toHaveBeenCalledWith(
+        expect.any(HTMLElement),
+        expect.objectContaining({ sitekey: 'another-key', start: 'auto' })
+      );
+    });
+
+    await rerender({
       componentInputs: { siteKey: 'another-key', hideClose: true }
     });
 
@@ -173,6 +184,7 @@ describe('CaptchaFoxComponent', () => {
           useValue: {
             siteKey: 'another',
             mode: 'hidden',
+            start: 'auto',
             language: 'it',
             hideClose: true
           }
@@ -183,7 +195,13 @@ describe('CaptchaFoxComponent', () => {
     await waitFor(() => {
       expect(renderSpy).toHaveBeenCalledWith(
         expect.any(HTMLElement),
-        expect.objectContaining({ sitekey: 'test', mode: 'hidden', lang: 'it', hideClose: true })
+        expect.objectContaining({
+          sitekey: 'test',
+          mode: 'hidden',
+          start: 'auto',
+          lang: 'it',
+          hideClose: true
+        })
       );
     });
   });

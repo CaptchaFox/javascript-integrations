@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Theme, WidgetDisplayMode, WidgetI18nConfig } from '@captchafox/types';
+import { Theme, WidgetDisplayMode, WidgetI18nConfig, WidgetStart } from '@captchafox/types';
 
 export interface CaptchaConfig {
   /**
@@ -11,6 +11,12 @@ export interface CaptchaConfig {
    * @see {@link https://docs.captchafox.com/widget-api#options}
    */
   mode?: WidgetDisplayMode;
+  /**
+   * The default start behavior to use when no start has been specified on a widget.
+   * Controls when the verification begins. Defaults to `none`.
+   * @see {@link https://docs.captchafox.com/widget-api#options}
+   */
+  start?: WidgetStart;
   /**
    * The language the widget should display. Defaults to automatically detecting it.
    * @see {@link https://docs.captchafox.com/language-codes}

@@ -74,6 +74,7 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
       lang: props.lang,
       sitekey: props.sitekey,
       mode: props.mode,
+      start: props.start,
       theme: props.theme,
       i18n: props.i18n,
       hideClose: props.hideClose,
@@ -103,7 +104,7 @@ export const CaptchaFox: Component<CaptchaFoxProps> = (props) => {
 
   createEffect(
     on(
-      () => [props.sitekey, props.lang, props.mode, props.theme, props.hideClose],
+      () => [props.sitekey, props.lang, props.mode, props.start, props.theme, props.hideClose],
       async () => {
         if (isApiReady()) {
           await renderCaptcha();

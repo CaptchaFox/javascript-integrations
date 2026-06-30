@@ -52,6 +52,7 @@ const app = createApp(App)
 | sitekey   | `string`                                                                                           | The sitekey for the widget.                                                     | ✅           |
 | lang      | `string`                                                                                           | The language the widget should display. Defaults to automatically detecting it. |              |
 | mode      | `inline\|popup\|hidden`                                                                            | The mode the widget should be displayed in.                                     |              |
+| start     | `none\|auto\|focus`                                                                                | Controls when the verification begins. Defaults to `none`.                      |              |
 | theme     | `light` &#124; `dark` &#124; [`ThemeDefinition`](https://docs.captchafox.com/theming#custom-theme) | The theme of the widget. Defaults to light.                                     |              |
 | nonce     | `string`                                                                                           | Randomly generated nonce.                                                       |              |
 | i18n      | `object`                                                                                           | Custom i18n configuration.                                                      |              |
