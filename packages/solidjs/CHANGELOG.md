@@ -1,5 +1,16 @@
 # @captchafox/solid
 
+## 1.7.0
+
+### Minor Changes
+
+- 002efd9: feat: add `start` option to control when verification begins
+
+### Patch Changes
+
+- Updated dependencies [002efd9]
+  - @captchafox/types@1.6.0
+
 ## 1.6.1
 
 ### Patch Changes

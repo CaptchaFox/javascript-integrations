@@ -1,6 +1,6 @@
 {
   "name": "@captchafox/angular",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
@@ -17,7 +17,7 @@
     "@angular/forms": ">=12.0.0"
   },
   "dependencies": {
-    "@captchafox/types": "^1.4.0"
+    "@captchafox/types": "^1.6.0"
   },
   "devDependencies": {
     "@angular/animations": "^16.2.7",
