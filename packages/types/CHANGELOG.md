@@ -1,5 +1,11 @@
 # @captchafox/types
 
+## 1.6.0
+
+### Minor Changes
+
+- 002efd9: feat: add `start` option to control when verification begins
+
 ## 1.5.0
 
 ### Minor Changes
