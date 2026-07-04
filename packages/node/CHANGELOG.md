@@ -1,5 +1,11 @@
 # @captchafox/node
 
+## 1.5.1
+
+### Patch Changes
+
+- a442e57: fix: add missing types
+
 ## 1.5.0
 
 ### Minor Changes
