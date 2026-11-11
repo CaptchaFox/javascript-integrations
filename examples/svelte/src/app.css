@@ -1,0 +1,31 @@
+:root {
+  --primary: #00acc1;
+  --primary-hover: #0097a7;
+  --primary-focus: rgba(0, 188, 212, 0.125);
+}
+
+article {
+  text-align: start;
+}
+
+pre {
+  padding: 1rem;
+}
+
+pre:empty {
+  display: none;
+}
+
+.box {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.examples .grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.examples article {
+  margin: 0;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@examples/svelte",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "svelte-check --tsconfig ./tsconfig.json && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@captchafox/svelte": "*",
+    "@picocss/pico": "^1.5.10",
+    "svelte": "^5.57.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "svelte-check": "^4.7.8",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.8"
+  }
+}

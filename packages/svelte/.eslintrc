@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "extends": ["captchafox", "plugin:svelte/recommended"],
+  "parserOptions": {
+    "sourceType": "module",
+    "extraFileExtensions": [".svelte"]
+  },
+  "overrides": [
+    {
+      "files": ["*.svelte"],
+      "parser": "svelte-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+      }
+    }
+  ],
+  "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off"
+  }
+}
