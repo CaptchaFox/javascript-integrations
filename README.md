@@ -16,6 +16,7 @@ Browser:
 - [@captchafox/vue](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/vue)
 - [@captchafox/angular](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/angular)
 - [@captchafox/solid](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/solidjs)
+- [@captchafox/svelte](https://github.com/CaptchaFox/javascript-integrations/tree/main/packages/svelte)
 
 Server:
 
@@ -36,3 +37,5 @@ Examples for each integration can be found in the `examples` folder.
   - Service usage
 - [Solid.js](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/solidjs)
   - Multiple form implementations (plain HTML, JS)
+- [Svelte](https://github.com/CaptchaFox/javascript-integrations/tree/main/examples/svelte)
+  - Multiple form implementations (plain HTML, JS, `bind:token`)
