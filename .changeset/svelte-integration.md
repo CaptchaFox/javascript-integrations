@@ -1,5 +1,5 @@
 ---
-'@captchafox/svelte': minor
+'@captchafox/svelte': major
 ---
 
 feat: add Svelte 5 integration
