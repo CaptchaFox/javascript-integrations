@@ -27,26 +27,27 @@
     "test:watch": "vitest"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.5.0"
   },
   "dependencies": {
     "@captchafox/types": "^1.6.0"
   },
   "devDependencies": {
-    "@captchafox/tsconfig": "*",
     "@captchafox/internal": "*",
-    "@testing-library/vue": "^7.0.0",
-    "@vitejs/plugin-vue": "^4.4.0",
-    "@vitest/coverage-v8": "^0.34.6",
+    "@captchafox/tsconfig": "*",
+    "@testing-library/vue": "^8.1.0",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vitest/coverage-v8": "^5.1.0",
+    "@vue/test-utils": "^2.5.1",
     "concurrently": "^8.2.0",
     "eslint-config-captchafox": "*",
     "eslint-plugin-vue": "^9.17.0",
-    "jsdom": "^22.1.0",
-    "typescript": "^5.0.2",
-    "vite": "^4.5.3",
-    "vitest": "^0.34.6",
-    "vue": "^3.3.4",
-    "vue-tsc": "^1.8.16"
+    "jsdom": "^29.1.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0",
+    "vue": "^3.5.45",
+    "vue-tsc": "^3.3.14"
   },
   "keywords": [
     "vue",

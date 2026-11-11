@@ -12,11 +12,11 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@captchafox/tsconfig": "*",
     "@captchafox/internal": "*",
+    "@captchafox/tsconfig": "*",
     "eslint-config-captchafox": "*",
-    "tsup": "^8.3.5",
-    "typescript": "^5.0.2"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   },
   "repository": {
     "type": "git",

@@ -56,31 +56,47 @@ export type ThemeDefinition = {
   };
 };
 
+/** Supported language codes. See https://docs.captchafox.com/en/language-codes */
 type Language =
-  | 'sv'
-  | 'ko'
-  | 'da'
   | 'cs'
-  | 'id'
-  | 'ru'
-  | 'uk'
-  | 'no'
-  | 'pt'
-  | 'tr'
-  | 'fi'
-  | 'en'
-  | 'fr'
+  | 'da'
   | 'de'
-  | 'it'
+  | 'en'
   | 'es'
-  | 'nl'
-  | 'tr'
   | 'fi'
-  | 'ja'
-  | 'pl'
+  | 'fr'
   | 'ga'
+  | 'id'
+  | 'it'
+  | 'ja'
+  | 'ko'
+  | 'nl'
+  | 'no'
+  | 'pl'
+  | 'pt'
+  | 'ru'
+  | 'sv'
+  | 'tr'
+  | 'uk'
+  | 'zh-cn'
+  | 'zh-hans'
   | 'zh-tw'
-  | 'zh-cn';
+  | 'zh-hk'
+  | 'zh-hant';
+
+/** Error codes passed to the `onError` callback. See https://docs.captchafox.com/en/widget-api */
+export type WidgetErrorCode =
+  | 'internal-error'
+  | 'load-challenge-error'
+  | 'verify-challenge-error'
+  | 'load-audio-error'
+  | 'load-slide-error'
+  | 'network-error'
+  | 'challenge-aborted'
+  | 'rate-limited'
+  | 'invalid-sitekey'
+  | 'site-not-allowed'
+  | 'request-expired';
 
 interface I18nLabels {
   initial?: string;
@@ -108,7 +124,7 @@ export type WidgetOptions = {
   /** Hide the close button. This will prevent users from closing the widget modal */
   hideClose?: boolean;
   /** Called when an error occurs. */
-  onError?: (error?: Error | string) => void;
+  onError?: (error?: Error | WidgetErrorCode | (string & Record<never, never>)) => void;
   /** Called with the response token after successful verification. */
   onVerify?: VerifyCallbackFunction;
   /** Called after the challenge expires. */

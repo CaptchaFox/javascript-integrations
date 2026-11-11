@@ -10,7 +10,7 @@ export type Data = {
 
 export default function Hidden() {
   const [formData, setFormData] = createSignal<Data | undefined>();
-  let captchaRef: CaptchaFoxInstance;
+  let captchaRef!: CaptchaFoxInstance;
 
   const handleSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
@@ -76,7 +76,7 @@ export default function Hidden() {
             />
             <fieldset>
               <CaptchaFox
-                ref={captchaRef!}
+                ref={captchaRef}
                 mode="hidden"
                 sitekey="sk_11111111000000001111111100000000"
               />

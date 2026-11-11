@@ -34,21 +34,25 @@ function Example() {
 
 ### Props
 
-| **Prop**  | **Type**                                                                                           | **Description**                                                                 | **Required** |
-| --------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------ |
-| sitekey   | `string`                                                                                           | The sitekey for the widget.                                                     | ✅           |
-| lang      | `string`                                                                                           | The language the widget should display. Defaults to automatically detecting it. |              |
-| mode      | `inline\|popup\|hidden`                                                                            | The mode the widget should be displayed in.                                     |              |
-| start     | `none\|auto\|focus`                                                                                | Controls when the verification begins. Defaults to `none`.                      |              |
-| theme     | `light` &#124; `dark` &#124; [`ThemeDefinition`](https://docs.captchafox.com/theming#custom-theme) | The theme of the widget. Defaults to light.                                     |              |
-| nonce     | `string`                                                                                           | Randomly generated nonce.                                                       |              |
-| i18n      | `object`                                                                                           | Custom i18n configuration.                                                      |              |
-| hideClose | `boolean`                                                                                          | Hides the close button and prevents users from closing the widget modal.        |              |
-| onVerify  | `function`                                                                                         | Called with the response token after successful verification.                   |              |
-| onFail    | `function`                                                                                         | Called after unsuccessful verification.                                         |              |
-| onError   | `function`                                                                                         | Called when an error occured.                                                   |              |
-| onExpire  | `function`                                                                                         | Called when the challenge expires.                                              |              |
-| onClose   | `function`                                                                                         | Called when the challenge was closed.                                           |              |
+| **Prop**          | **Type**                                                                                              | **Description**                                                                 | **Required** |
+| ----------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------ |
+| sitekey           | `string`                                                                                              | The sitekey for the widget.                                                     | ✅           |
+| lang              | `string`                                                                                              | The language the widget should display. Defaults to automatically detecting it. |              |
+| mode              | `inline\|popup\|hidden`                                                                               | The mode the widget should be displayed in.                                     |              |
+| start             | `none\|auto\|focus`                                                                                   | Controls when the verification begins. Defaults to `none`.                      |              |
+| theme             | `light` &#124; `dark` &#124; [`ThemeDefinition`](https://docs.captchafox.com/en/theming#custom-theme) | The theme of the widget. Defaults to light.                                     |              |
+| nonce             | `string`                                                                                              | Randomly generated nonce.                                                       |              |
+| i18n              | `object`                                                                                              | Custom i18n configuration.                                                      |              |
+| hideClose         | `boolean`                                                                                             | Hides the close button and prevents users from closing the widget modal.        |              |
+| className         | `string`                                                                                              | CSS class name(s) for the widget container.                                     |              |
+| onVerify          | `function`                                                                                            | Called with the response token after successful verification.                   |              |
+| onFail            | `function`                                                                                            | Called after unsuccessful verification.                                         |              |
+| onError           | `function`                                                                                            | Called when an error occurred.                                                  |              |
+| onExpire          | `function`                                                                                            | Called when the challenge expires.                                              |              |
+| onClose           | `function`                                                                                            | Called when the challenge was closed.                                           |              |
+| onLoad            | `function`                                                                                            | Called when the widget is ready.                                                |              |
+| onChallengeOpen   | `function`                                                                                            | Called when the challenge was opened.                                           |              |
+| onChallengeChange | `function`                                                                                            | Called when the challenge changed.                                              |              |
 
 ### Using the verification callback
 
@@ -74,7 +78,7 @@ function Example() {
 import { CaptchaFox, CaptchaFoxInstance } from '@captchafox/solid'
 
 function Example() {
-    let captchaRef: CaptchaFoxInstance;
+    let captchaRef!: CaptchaFoxInstance;
 
     const triggerAction = async () => {
         // execute the captcha
@@ -88,7 +92,7 @@ function Example() {
     return (
         <CaptchaFox
             sitekey="sk_11111111000000001111111100000000"
-            ref={captchaRef!}
+            ref={captchaRef}
         />
         <button onClick={triggerAction}>Action</button>
     )
