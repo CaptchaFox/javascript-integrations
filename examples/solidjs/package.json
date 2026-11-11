@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "@captchafox/solid": "*",
-    "@solidjs/router": "^0.9.1",
     "@picocss/pico": "^1.5.10",
-    "solid-js": "^1.8.5"
+    "@solidjs/router": "^0.9.1",
+    "solid-js": "^1.9.19"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "vite": "^4.5.3",
-    "vite-plugin-solid": "^2.7.2"
+    "typescript": "^5.9.3",
+    "vite": "^8.3.8",
+    "vite-plugin-solid": "^2.11.16"
   }
 }
