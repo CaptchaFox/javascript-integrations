@@ -1,5 +1,13 @@
 # @captchafox/angular
 
+## 1.7.1
+
+### Patch Changes
+
+- 7a78a1a: chore: update build tooling and document all supported props, events and options
+- Updated dependencies [7a78a1a]
+  - @captchafox/types@1.7.0
+
 ## 1.7.0
 
 ### Minor Changes
