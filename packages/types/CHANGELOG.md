@@ -1,5 +1,11 @@
 # @captchafox/types
 
+## 1.7.0
+
+### Minor Changes
+
+- 7a78a1a: feat: add `WidgetErrorCode` type for `onError` and the `zh-hans`, `zh-hk` and `zh-hant` language codes
+
 ## 1.6.0
 
 ### Minor Changes

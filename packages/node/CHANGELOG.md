@@ -1,5 +1,11 @@
 # @captchafox/node
 
+## 1.5.2
+
+### Patch Changes
+
+- 7a78a1a: chore: update build tooling and document all supported props, events and options
+
 ## 1.5.1
 
 ### Patch Changes

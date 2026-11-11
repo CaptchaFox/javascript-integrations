@@ -1,5 +1,18 @@
 # @captchafox/vue
 
+## 2.0.0
+
+### Major Changes
+
+- 7a78a1a: feat!: require Vue 3.5 or later
+
+  The package is now built with Vue 3.5, and its type declarations and compiled output require it. Projects on older Vue 3 versions can keep using `@captchafox/vue@1`.
+
+### Patch Changes
+
+- Updated dependencies [7a78a1a]
+  - @captchafox/types@1.7.0
+
 ## 1.7.0
 
 ### Minor Changes
