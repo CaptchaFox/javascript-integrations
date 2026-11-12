@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NotificationService } from './services/notification.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: []
+  standalone: false
 })
-export class AppComponent {}
+export class AppComponent {
+  protected readonly notifications = inject(NotificationService);
+}

@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CaptchaFoxModule } from '@captchafox/angular/dist'; // dist for local testing
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
@@ -31,9 +29,7 @@ import { TemplateFormComponent } from './routes/template-form/template-form.comp
       siteKey: 'sk_11111111000000001111111100000000'
     }),
     ReactiveFormsModule,
-    FormsModule,
-    ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

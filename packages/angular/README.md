@@ -4,6 +4,8 @@
 
 ## Installation
 
+Requires Angular 16 or later.
+
 Install the library using your prefered package manager
 
 ```sh
