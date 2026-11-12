@@ -1,5 +1,11 @@
 # @captchafox/svelte
 
+## 1.0.1
+
+### Patch Changes
+
+- 52adc60: fix: normalize `repository.url` in package.json
+
 ## 1.0.0
 
 ### Major Changes
