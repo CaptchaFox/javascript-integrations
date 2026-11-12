@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { afterEach, describe, expect, it } from '@jest/globals';
 import nock from 'nock';
 import { ParseError } from './errors/ParseError';
 import { verify } from './verify';
