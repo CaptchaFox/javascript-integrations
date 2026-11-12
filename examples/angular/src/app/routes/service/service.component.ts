@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CaptchaFoxService } from '@captchafox/angular/dist'; // dist for local testing
-import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-service',
   templateUrl: './service.component.html',
-  styleUrls: []
+  styleUrls: [],
+  standalone: false
 })
 export class ServiceComponent implements OnInit {
   private captchaId!: string;
 
-  constructor(private captchaFoxService: CaptchaFoxService, private toastr: ToastrService) {}
+  constructor(
+    private captchaFoxService: CaptchaFoxService,
+    private notifications: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.captchaFoxService
@@ -27,7 +31,7 @@ export class ServiceComponent implements OnInit {
 
     this.captchaFoxService.verify(this.captchaId).subscribe({
       next: (token: string) => {
-        this.toastr.success(`Token: ${token}`);
+        this.notifications.success(`Token: ${token}`);
       },
       error: (error) => {
         console.error(error);

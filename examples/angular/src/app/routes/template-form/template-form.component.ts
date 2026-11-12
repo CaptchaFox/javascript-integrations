@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-template-form',
   templateUrl: './template-form.component.html',
-  styleUrls: []
+  styleUrls: [],
+  standalone: false
 })
 export class TemplateFormComponent {
-  constructor(private toastr: ToastrService) {}
+  constructor(private notifications: NotificationService) {}
 
   public onSubmit(form: NgForm) {
-    this.toastr.success(`Token: ${form.value.captchaToken}`);
+    this.notifications.success(`Token: ${form.value.captchaToken}`);
 
     form.reset();
   }

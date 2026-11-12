@@ -4,6 +4,8 @@
 
 ## Installation
 
+Requires Angular 16 or later. For older Angular versions, use `@captchafox/angular@1`.
+
 Install the library using your prefered package manager
 
 ```sh

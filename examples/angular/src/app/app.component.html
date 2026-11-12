@@ -1,1 +1,15 @@
 <router-outlet></router-outlet>
+
+@if (notifications.current(); as notification) {
+  <div class="notification" [class.error]="notification.type === 'error'" role="status">
+    <span>{{ notification.message }}</span>
+    <button
+      type="button"
+      class="secondary outline"
+      aria-label="Dismiss"
+      (click)="notifications.dismiss()"
+    >
+      ×
+    </button>
+  </div>
+}
